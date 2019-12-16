@@ -1,29 +1,33 @@
 import sys
 from Color import *
-file = open('PerfectNumbers.txt', 'w')
+file = open('PerfectNumber.txt', 'w')
+file.write("Perfect Number Finder V3\n")
+file.write("Made By Connor Slade\n")
+file.write("-------------------------\n")
+file.close()
 MN = int(input("Min: "))
 MA = int(input("Max: "))
-for x in range(MN,MA):
+for x in range(MN, MA):
     a = []
     t = 0
-    color(RED)
-    print(x)
-    color(RESET)
     for i in range(1, x + 1):
         if x % i == 0:
             a.append(i)
     a.remove(x)
     for i in range(len(a)):
-       t = t + a[i]
+        t = t + a[i]
     if x == t:
-        color(GREEN)
-        print(x)
-        color(RESET)
+        file = open('PerfectNumber.txt', 'a')
         file.writelines(str(x))
         file.write("\n")
-file.close()
+        file.close()
+        cprint(x, GREEN)
+    else:
+        cprint(x, RED)
 
-file = open('PerfectNumbers.txt', 'r')
+file = open('PerfectNumber.txt', 'r')
 l = file.readlines()
-color(GREEN)
-print(l)
+l.remove("Perfect Number Finder V3\n")
+l.remove("Made By Connor Slade\n")
+l.remove("-------------------------\n")
+cprint(l, GREEN)
