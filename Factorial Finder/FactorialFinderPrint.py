@@ -32,7 +32,7 @@ def main2():
     for i in range(len(d)):
         e = e + int(d[i])
     f = ("The sum of the digets in", a, "is", e)
-    cprint(f, GREEN)
+    #cprint(f, GREEN)
 if g == 1:
     main1()
 else:
