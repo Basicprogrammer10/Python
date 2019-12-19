@@ -11,7 +11,7 @@ def main():
         cprint(g[r], GREEN)
         for i in range(len(g)):
             if i != g[r]:
-                f.seek(r)
+                f.seek(r, 0)
                 file.write('')
         f.truncate()
         exit()

@@ -1,2 +1,4 @@
-This is idea number 1
-This is idea number 2
+1
+2
+3
+4
