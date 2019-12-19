@@ -22,7 +22,7 @@ def main():
         for i in range(len(g)-1):
             print("I is", i)
             if i != c:
-                file.write(g[i])
+                file.write(g[i] + "\n")
         open("ideas.txt", "r+").truncate()
         exit()
     else:
