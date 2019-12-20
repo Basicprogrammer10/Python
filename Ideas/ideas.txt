@@ -1,4 +1,4 @@
-Add Nagative Number Support to Factorial Program
-Make a Polor Ploter
+Add Negative Number Support to Factorial Program
+Make a Polor Grapher
 Add more ideas to this
-Make text Encripter
+Make text Encryptor
