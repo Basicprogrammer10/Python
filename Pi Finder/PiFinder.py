@@ -1,7 +1,18 @@
-from decimal import Decimal, getcontext
-getcontext().prec=100
-print sum(1/Decimal(16)**k * 
-          (Decimal(4)/(8*k+1) - 
-           Decimal(2)/(8*k+4) - 
-           Decimal(1)/(8*k+5) -
-           Decimal(1)/(8*k+6)) for k in range(100))
+import decimal
+
+def pi():
+    decimal.getcontext().prec += 2  # extra digits for intermediate steps
+    three = decimal.Decimal(3)      # substitute "three=3.0" for regular floats
+    lasts, t, s, n, na, d, da = 0, three, 3, 1, 0, 0, 24
+    while s != lasts:
+        lasts = s
+        n, na = n + na, na + 8
+        d, da = d + da, da + 32
+        t = (t * n) / d
+        s += t
+    decimal.getcontext().prec -= 2
+    return +s               # unary plus applies the new precision
+
+decimal.getcontext().prec = 10000
+pi = pi()
+print(pi)
