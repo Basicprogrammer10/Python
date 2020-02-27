@@ -1,0 +1,10 @@
+import random
+file = open('ColorGenerator/Nouns.txt', 'r')
+noun = file.readlines()
+file.close()
+file = open('ColorGenerator/Colors.txt', 'r')
+color = file.readlines()
+file.close()
+print(color)
+print(noun[random.randint(0,len(noun)-1)])
+print(color[random.randint(0,len(color)-1)])
