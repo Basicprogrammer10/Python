@@ -9,7 +9,7 @@ file.close()
 
 file = open('ColorGenerator/NewColors.txt', 'w')
 #color = file.readlines()
-for i in range(1000):
+for i in range(7080):
     if str(noun[random.randint(0,len(noun)-1)]) + str(color[random.randint(0,len(color)-1)]) not in colors:
         file.write(str(noun[random.randint(0,len(noun)-1)]) + str(color[random.randint(0,len(color)-1)]))
         colors.append(str(noun[random.randint(0,len(noun)-1)]) + str(color[random.randint(0,len(color)-1)]))
