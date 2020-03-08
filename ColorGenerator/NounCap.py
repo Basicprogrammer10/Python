@@ -1,5 +1,5 @@
 import string
-nounout= []
+nounout = []
 
 file = open('ColorGenerator/Nouns.txt', 'r')
 nounin = file.readlines()
