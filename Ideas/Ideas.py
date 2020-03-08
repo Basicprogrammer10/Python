@@ -1,9 +1,9 @@
 import random
 from Color import *
-file = open("ideas.txt", "r")
+file = open("Ideas/ideas.txt", "r")
 lines = file.readlines()
 #print("Lines:", lines)
-f = open("ideas.txt", "r").read()
+f = open("Ideas/ideas.txt", "r").read()
 g = f.split("\n")
 #print("file.read:", f)
 #print("f.split:", g)

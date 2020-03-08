@@ -2,4 +2,3 @@ Add Negative Number Support to Factorial Program
 Make a Polor Grapher
 Add more ideas to this
 Make text Encryptor
-Make Color Gen GUI
