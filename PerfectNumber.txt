@@ -1,0 +1,7 @@
+Perfect Number Finder V3
+Made By Connor Slade
+-------------------------
+6
+28
+496
+8128

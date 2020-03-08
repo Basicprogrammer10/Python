@@ -1,0 +1,6 @@
+file = open('ColorGenerator/Nouns.txt', 'r')
+noun = file.readlines()
+file.close()
+file = open('ColorGenerator/NounFormat.txt', 'w')
+file.write(str(noun))
+file.close()
