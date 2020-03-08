@@ -6,6 +6,7 @@
 	],
 	"settings": {
 		"toggleFileEventLogging": true,
-		"showGitMetrics": true
+		"showGitMetrics": true,
+		"color-highlight.markerType": "underline"
 	}
 }
