@@ -18,9 +18,3 @@ for i in range(1, len(num)):
         
 
 print(final)
-'''
-for i in range(len(num)):
-    for j in range(low, high+1):
-        if num[i] == j:
-            final.append(i)
-'''
