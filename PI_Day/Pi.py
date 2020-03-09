@@ -1,7 +1,7 @@
-import os
+import os, keyboard
 os.system('cls' if os.name == 'nt' else 'clear')
 pi = "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470"
-digits  = 11
+digits  = 22
 dig = digits + 1
 playing = True
 a = 0
@@ -16,7 +16,7 @@ while playing == True:
         print()
     else:
         print('\033[31m' + "You Faild")
-        print('\033[31m' + pi[a+1])
+        print('\033[31m' + pi[a])
         break
     if a == dig:
         print('\033[33m' + "Nice Job: " + str(digits) + " Digits!")
