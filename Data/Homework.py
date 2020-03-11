@@ -1,4 +1,4 @@
-import numpy as np; np.random.seed(13)
+#import numpy as np; np.random.seed(13)
 import matplotlib.pyplot as plt
 
 

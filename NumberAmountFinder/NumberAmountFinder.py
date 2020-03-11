@@ -1,5 +1,5 @@
 from statistics import median
-num = [1, 1, 5, 3, 3, 3]
+num = [34, 25, 24, 35, 40, 32, 41, 27, 37, 32, 21, 30]
 final = []
 low = 0
 high = 0
