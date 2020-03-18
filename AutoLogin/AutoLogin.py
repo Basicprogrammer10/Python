@@ -38,7 +38,7 @@ def login():
 
 
 while True:
-    h = int(strftime("%H", gmtime())) - 4 #change - 4 to your timezone
+    h = int(strftime("%H", gmtime())) - 4 #change - 4 to your timezone (-4 is Eastern Time)
     m = int(strftime("%M", gmtime()))
     ct = m + (h * 60)
     ft = min + (hor * 60)
