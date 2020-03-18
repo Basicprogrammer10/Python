@@ -1,16 +1,26 @@
+# For python 3.8
 import time
 from random import randint
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from time import gmtime, strftime
+from time import gmtime, strftime, sleep
+from tkinter import *
 d = False
 #min = 5
 min = randint(1, 15)
 hor = 8
 sec = 0
 wait = 2
-
-
+root = Tk()
+mainframe = Frame(root)
+mainframe.grid(column=1000, row=1000, sticky=(N, W, E, S))
+mainframe.columnconfigure(0, weight=1)
+mainframe.rowconfigure(0, weight=1)
+ 
+best = StringVar()
+best.set('start')
+x1 = 12
+Label(mainframe,textvariable=best,font=("Helvetica",x1)).grid(column=1,row=1)
 def login():
     driver = webdriver.Firefox()
     driver.implicitly_wait(10)
@@ -35,8 +45,6 @@ def login():
     save.click()
     time.sleep(3)
     driver.close()
-
-
 while True:
     # change - 4 to your timezone (-4 is Eastern Time)
     h = int(strftime("%H", gmtime())) - 4
@@ -49,15 +57,21 @@ while True:
         pt = tp + 24 * 60
         ph = pt / 60
         pm = pt % 60
-        print(str(int(ph)) + ":" + str(pm))
+        j = str(int(ph)) + ":" + str(pm)
     else:
         pt = tp
         ph = pt / 60
         pm = pt % 60
-        print(str(int(ph)) + ":" + str(pm))
+        j = str(int(ph)) + ":" + str(pm)
+    time.sleep(wait)
+    if j == "0:0":
+        best.set("Now!")
+    else:
+        best.set(str(j))
+    mainframe.update()
     if int(h) == hor:
         if int(m) == min:
             if d == False:
                 login()
                 time.sleep(65)
-    time.sleep(wait)
+root.mainloop() 
