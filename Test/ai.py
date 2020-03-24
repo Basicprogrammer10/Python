@@ -1,1 +1,1 @@
-print("ai is hard :(")
+print("ai is hard... :(")
