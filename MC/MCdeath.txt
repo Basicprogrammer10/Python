@@ -1,0 +1,4 @@
+[7]
+---------------
+Total server deaths: 7
+Average: 7.0
