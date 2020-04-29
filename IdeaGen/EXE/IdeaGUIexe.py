@@ -76,7 +76,7 @@ def error(message):
 
 try:
     config = ConfigParser()
-    config.read('V:\Programming\Python\IdeaGen\EXE\Config.ini')
+    config.read('Config.ini')
     filepre = config.get("Setup", "filepre")
     NounFile = config.get("File", "NounFile")
     VerbFile = config.get("File", "VerbFile")
