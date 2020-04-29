@@ -31,5 +31,3 @@ Section "uninstall"
     Delete "$SMPROGRAMS\new shortcut.lnk"
  
     RMDir $INSTDIR
-# uninstaller section end
-SectionEnd
