@@ -1,5 +1,5 @@
 import random, easygui, sys
-filepre = "IdeaGen/"
+filepre = ""
 
 def list(num):
     '''Creates a file with some Ideas!'''
@@ -36,19 +36,19 @@ def showideas(file, title):
 def goodideas(num):
     '''Does some Nosetastic Stuff!!'''
     colors = []
-    file = open('IdeaGen/PGNouns.txt', 'r')
+    file = open(filepre + 'PGNouns.txt', 'r')
     noun = file.readlines()
     file.close()
-    file = open('IdeaGen/Verbs.txt', 'r')
+    file = open(filepre + 'Verbs.txt', 'r')
     color = file.readlines()
     file.close()
-    file = open('IdeaGen/GoodishNewIdeas.txt', 'w')
+    file = open(filepre + 'GoodishNewIdeas.txt', 'w')
 
     choices = ["Yes", "No", "Exit"]
     for i in range(num):
         word = str(noun[random.randint(0,len(noun)-1)]) + str(color[random.randint(0,len(color)-1)])
         if word not in colors:
-            opt = easygui.buttonbox("Is\n"+word+" A Good Idea?", choices=choices)
+            opt = easygui.buttonbox("Is\n"+word+"A Good Idea?", choices=choices)
             if opt == "Yes":
                 file.write(word)
                 colors.append(word)
@@ -63,10 +63,12 @@ def goodideas(num):
     file.close()
 
 def about():
+    '''Info About Me!'''
     easygui.msgbox("This Entrepreneur Opportunities Gen was made by Connor Slade!\nEmail: connor@connorcode.com\nSorry for the Win95 UI", "Error")
 
 def error(message):
-     easygui.msgbox(message, "Error")
+    '''Error Message lol'''
+    easygui.msgbox(message, "Error")
 
 while True:
     choices = ["List", "Good Ideas", "Show Ideas", "About", "Quit"]
