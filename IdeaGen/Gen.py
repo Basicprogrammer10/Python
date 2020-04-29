@@ -1,8 +1,8 @@
 import random
-file = open('ColorGenerator/PGNouns.txt', 'r')
+file = open('IdeaGen/PGNouns.txt', 'r')
 noun = file.readlines()
 file.close()
-file = open('ColorGenerator/Colors.txt', 'r')
+file = open('IdeaGen/Verbs.txt', 'r')
 color = file.readlines()
 file.close()
 #print(noun)
