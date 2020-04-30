@@ -1,0 +1,7 @@
+file = open('Keys.txt', 'r')
+noun = file.readlines()
+file.close()
+print(noun)
+file = open('KeysFormat.txt', 'w')
+file.write(str(noun))
+file.close()
