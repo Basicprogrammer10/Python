@@ -9,9 +9,10 @@ def setupfile():
     file.close()
 
     config_object["Setup"] = {
-        "admin": "Chankey Pathak",
-        "loginid": "chankeypathak",
-        "password": "tutswiki"
+        "compressondirectoryin": "C:",
+        "compressondirectoryout": "C:",
+        "compressonlevel": "5",
+        "compressonformat": ".rar"
     }
 
     with open('backupconfig.ini', 'w') as conf:
@@ -35,9 +36,17 @@ except:
         quit()
     else:
         quit()
-    
-compressondirectoryin = "C:"
-compressondirectoryout= "C:"
+
+def configsave():
+    with open('backupconfig.ini', 'w') as conf:
+            config_object.write(conf)
+            conf.close()
+
+config_object = ConfigParser()
+config_object.read("backupconfig.ini")
+
+compressondirectoryin = config_object["Setup"]["compressondirectoryin"]
+compressondirectoryout = config_object["Setup"]["compressondirectoryout"]
 
 def compress():
     '''Does The Compression'''
@@ -81,10 +90,14 @@ while True:
                 pass
             elif setup == "Input Directory":
                 compressondirectoryin = easygui.diropenbox("Choose Input Directory", "Input Directory", compressondirectoryin) + "\\"
+                config_object["Setup"]["compressondirectoryin"] = compressondirectoryin
+                configsave()
                 easygui.msgbox("Input Directory has been set to " + compressondirectoryin)
                 pass
             elif setup == "Output Directory":
                 compressondirectoryout = easygui.diropenbox("Choose Output Directory", "Output Directory", compressondirectoryout) + "\\"
+                config_object["Setup"]["compressondirectoryout"] = compressondirectoryout
+                configsave()
                 easygui.msgbox("Output Directory has been set to " + compressondirectoryout)
                 pass
             else:
@@ -96,10 +109,14 @@ while True:
             if setup == "Rar":
                 easygui.msgbox("Compression Format has been set to .Rar")
                 compressonformat = ".rar"
+                config_object["Setup"]["compressonformat"] = compressonformat
+                configsave()
                 pass
             elif setup == "Zip":
                 easygui.msgbox("Compression Format has been set to .Zip")
                 compressonformat = ".zip"
+                config_object["Setup"]["compressonformat"] = compressonformat
+                configsave()
                 pass
             else:
                 pass
@@ -111,26 +128,38 @@ while True:
             elif setup == "Store":
                 easygui.msgbox("Compression Level has been set to Store")
                 compressonlevel = 0
+                config_object["Setup"]["compressonlevel"] = str(compressonlevel)
+                configsave()
                 pass
             elif setup == "Fastest":
                 easygui.msgbox("Compression Level has been set to Fastest")
                 compressonlevel = 1
+                config_object["Setup"]["compressonlevel"] = str(compressonlevel)
+                configsave()
                 pass
             elif setup == "Fast":
                 easygui.msgbox("Compression Level has been set to Fast")
                 compressonlevel = 2
+                config_object["Setup"]["compressonlevel"] = str(compressonlevel)
+                configsave()
                 pass
             elif setup == "Normal":
                 easygui.msgbox("Compression Level has been set to Normal")
                 compressonlevel = 3
+                config_object["Setup"]["compressonlevel"] = str(compressonlevel)
+                configsave()
                 pass
             elif setup == "Good":
                 easygui.msgbox("Compression Level has been set to Good")
                 compressonlevel = 4
+                config_object["Setup"]["compressonlevel"] = str(compressonlevel)
+                configsave()
                 pass
             elif setup == "Best":
                 easygui.msgbox("Compression Level has been set to Best")
                 compressonlevel = 5
+                config_object["Setup"]["compressonlevel"] = str(compressonlevel)
+                configsave()
                 pass
             else:
                 pass
