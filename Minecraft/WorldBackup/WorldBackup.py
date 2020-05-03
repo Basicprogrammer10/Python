@@ -9,7 +9,8 @@ worlds.write('Backup Created With Connors Minecraft Backer Upper™' + '\n' + 'B
 for filename in glob.glob(os.path.join(folder_path, '**')):
     name = filename.replace("C:/Users/turtl/AppData/Roaming/.minecraft/saves\\", "")
     nname = name.replace(" ", "-")
-    os.system('rar a -m5 -r ' + output + today + "\\" + nname + '.rar "' + filename + '"')
+    #os.system('rar a -m5 -r ' + output + today + "\\" + nname + '.rar "' + filename + '"')
+    print('rar a -m5 -r ' + output + today + "\\" + nname + '.rar "' + filename + '"')
     worlds.write(nname + '\n')
 worlds.close()
 os.system('exit')

@@ -1,5 +1,6 @@
 from datetime import date
 from configparser import ConfigParser
+from threading import Thread
 import os,glob,easygui
 
 def setupfile():
@@ -9,8 +10,8 @@ def setupfile():
     file.close()
 
     config_object["Setup"] = {
-        "compressondirectoryin": "C:",
-        "compressondirectoryout": "C:",
+        "compressondirectoryin": "C:\\",
+        "compressondirectoryout": "C:\\",
         "compressonlevel": "5",
         "compressonformat": ".rar"
     }
@@ -47,19 +48,19 @@ config_object.read("backupconfig.ini")
 
 compressondirectoryin = config_object["Setup"]["compressondirectoryin"]
 compressondirectoryout = config_object["Setup"]["compressondirectoryout"]
+compressonlevel = config_object["Setup"]["compressonlevel"]
+compressonformat = config_object["Setup"]["compressonformat"]
 
-def compress():
+def compress(output,folder_path,format,level):
     '''Does The Compression'''
-    folder_path = "C:/Users/turtl/AppData/Roaming/.minecraft/saves/"
-    output = 'N:/Minecraft/WorldBackups/Minecraft/'
     today = str(date.today())
     os.system('mkdir "' + output + today + '"')
     worlds = open(output + today + "\\Backup.txt","w+")
-    worlds.write('Backup Created With Connors Minecraft Backer Upper™' + '\n' + 'Backup Creation today: ' + today + '\n' + '\n')
+    worlds.write('Backup Created With Connors Backer Upper™' + '\n' + 'Backup Creation Date: ' + today + '\n' + '\n')
     for filename in glob.glob(os.path.join(folder_path, '**')):
-        name = filename.replace("C:/Users/turtl/AppData/Roaming/.minecraft/saves\\", "")
+        name = filename.replace(folder_path, "")
         nname = name.replace(" ", "-")
-        os.system('rar a -m5 -r ' + output + today + "\\" + nname + '.rar "' + filename + '"')
+        os.system('rar a -m' + str(level) + ' -r ' + output + str(date.today()) + "\\" + nname + format + ' "' + filename + '"')
         worlds.write(nname + '\n')
     worlds.close()
 
@@ -71,12 +72,36 @@ def error(message):
     '''Error Message lol'''
     easygui.msgbox(message, "Error")
 
+def compress1():
+    easygui.msgbox("Backup Started\nThis may take some time!\n\nWhen process finishes you will be alerted.")
+    pass
+
+def compress2():
+    compress(compressondirectoryout,compressondirectoryin, compressonformat, compressonlevel)
+    easygui.msgbox("Process Completed!")
+    pass
+
 while True:
     choices = ["Backup", "Setup", "About", "Quit"]
     opt = easygui.buttonbox("Chose an option", choices=choices)
     if opt == "Quit":
         quit()
     elif opt == "Backup":
+        choices = ["Yes", "No"]
+        title = "Is this correct?\n\n"+"In Directory: "+compressondirectoryin+"\nOut Directory: "+compressondirectoryout+"\nCompression Level: "+str(compressonlevel)+"\nCompression Format: "+compressonformat
+        setup = easygui.buttonbox(title, choices=choices)
+        if setup == "No":
+            pass
+        elif setup == "Yes":
+            try:
+                #print('rar a -m' + str(compressonlevel) + ' -r ' + compressondirectoryout + str(date.today()) + "\\ " + compressondirectoryin + compressonformat + ' "' + 'FileName' + '"')
+                Thread(target=compress1).start()
+                Thread(target=compress2).start()
+            except:
+                easygui.msgbox("An Error Occurred")
+            pass
+        else:
+            quit()
         pass
     elif opt == "Setup":
         choices = ["In and Out", "Compression Format", "Compression Level", "Done"]
@@ -101,7 +126,7 @@ while True:
                 easygui.msgbox("Output Directory has been set to " + compressondirectoryout)
                 pass
             else:
-                pass
+                quit()
             pass
         elif setup == "Compression Format":
             choices = ["Rar", "Zip", "Done"]
@@ -119,7 +144,7 @@ while True:
                 configsave()
                 pass
             else:
-                pass
+                quit()
         elif setup == "Compression Level":
             choices = ["Store", "Fastest", "Fast", "Normal", "Good", "Best", "Done"]
             setup = easygui.buttonbox("Chose an option", choices=choices)
@@ -162,10 +187,10 @@ while True:
                 configsave()
                 pass
             else:
-                pass
+                quit()
             pass
         else:
-            pass
+            quit()
     elif opt == "About":
         about()
     else:
