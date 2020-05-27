@@ -1,3 +1,6 @@
-[]
+[<_io.TextIOWrapper name='N:\\Minecraft\\SalC1\\Other\\jsonTEST\\000b1f21-43d3-4882-bf05-0daba67b4c7e.json' mode='r' encoding='cp1252'>, 7]
 ---------------
-Total server deaths: 0
+Total server deaths: 7
+Average: 7.0
+Max: 7
+Min: 7

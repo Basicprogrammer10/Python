@@ -1,6 +1,6 @@
 import json
 import os,glob
-folder_path = 'N:\Minecraft\SalC1\world\stats'
+folder_path = 'N:\Minecraft\SalC1\Other\jsonTEST\\'
 #folder_path = 'N:\Minecraft\SalC1\jsonTEST'
 total = 0
 players = 0
