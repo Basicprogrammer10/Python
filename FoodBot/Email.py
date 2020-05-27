@@ -3,37 +3,42 @@ import ssl
 import random
 from datetime import date
 
-port = 587  # For starttls
+port = 587
 smtp_server = "smtp.gmail.com"
 sender_email = "sladefoodbot@gmail.com"
 #receiver_email = ["turtleslade@gmail.com", "connorslade@email.com", "4jackslade@gmail.com"]
 receiver_email = ["turtleslade@gmail.com"]
 password = "74DiMmTZkAgxPPJLBidJZATVCD4xDjVSzJXG52NTTf7M6MKXJ5u5chyD8cVq6wMzNsuTSoPQCQj2DDsmizeXbcFNu4mAzLq63rea"
 
-def rem(filename,excludedWord):
-    f = open(filename,'r')
-    lines = f.readlines()
-    f.close()
+def rem(filename,stopwords):
+    file = open(filename, "r")
+    words = file.readlines()
+    file.close()
+    words2 = []
+    nose = 0
+    for word in list(words):  # iterating on a copy since removing will mess things up
+        if word in stopwords:
+            if nose == 0:
+                words.remove(word)
+                words2.append(word)
+            else:
+                pass
+                #words.append(word)
+            for word in list(words2):  # iterating on a copy since removing will mess things up
+                if word in stopwords:
+                    nose = 1
+    file = open("food/Dessert.nose", "w")
+    for element in words:
+        file.write(element)
+    file.close()
 
-    nose = 1
-    newLines = []
-    for line in lines:
-        if nose == 0:
-            newLines.append(' '.join([word for word in line.split() if word != excludedWord]))
-        else:
-            newLines.append(' '.join([word for word in line.split()]))
 
-        if excludedWord in newLines:
-            nose = 1
-    f = open(filename, 'w')
-    for line in lines:
-        f.write("{}\n".format(line))
-    f.close()
 my_file = open("food/Dessert.nose", "r")
 dessert = my_file.read()
 dessert = dessert.split('\n')
 drand = random.randint(0, len(dessert)-1)
 #rem("food/Dessert.nose",dessert[drand])
+rem("food/Dessert.nose","2\n")
 
 my_file = open("food/Protein.nose", "r")
 protein = my_file.read()
@@ -77,7 +82,7 @@ Grain: """+grain[grand]+"""
 Dessert: """+dessert[drand]+"""
 """
 
-print(message)
+#print(message)
 
 
 def sendmail(sender_email, message, password, receiver_email):
