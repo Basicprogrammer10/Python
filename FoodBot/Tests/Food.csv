@@ -1,0 +1,91 @@
+Make,Name,Quantity,Expiration Date,Cook Time Min,Cook Time Max,Food Groop,Location
+647,Bread,2.00,?,10,30,Grain,Pantry Freezer
+Alden,Ice Cream Sandwich,2.00,?,0,0,Dessert,Pantry Freezer
+Alexia,Butternut Squash Risotto,2.00,8/21/2021,8,11,Veggie,Pantry Freezer
+Alexia,Hashed Browns,1.00,3/9/2021,14,14,Veggie,Pantry Freezer
+Alexia,Oven Fries,3.00,9/27/2021,30,30,Veggie,Basement Freezer
+Alexia,Sweet Potato Waffle Fries,4.00,2/4/2022,28,28,Veggie,Basement Freezer
+Amys,Black Bean Burrito,1.00,2/20/2022,2,55,Protein,Kitchen Freezer
+Amys,Red Thai Curry,1.00,?,5,55,Protein,Pantry Freezer
+Bacardi,Strawberry Daiquri Mix,2.00,?,5,5,Dessert,Pantry Freezer
+Baldor,Fresh Chicken,2.00,9/1/2020,25,25,Protein,Pantry Freezer
+Baldor,Steak,2.00,?,20,30,Protein,Pantry Freezer
+BirdsEye,Broccoli,1.00,3/8/2022,5,5,Veggie,Basement Freezer
+Costco,Angus Cheeseburger Lg,1.00,?,2,2,Protein,Pantry Freezer
+Costco,Veggie Bacon Frirrata,18.00,?,0.6,20,Breakfast,Kitchen Freezer
+Costco,Yamaguchi Noodles,3.00,?,3,3,Protein,Pantry Freezer
+Devour,Philly Chese Steak,2.00,?,3,3,Protein,Kitchen Freezer
+Edys,Classic Vanilla Ice Cream,1.00,?,0,0,Dessert,Kitchen Freezer
+Eggo,Big Chocolate Pancakes,2.00,?,0,0.5,Breakfast,Kitchen Freezer
+Eggo,Cinamin Waffles,1.00,?,0,2,Breakfast,Kitchen Freezer
+Eggo,Mini  Pancakes,1.00,?,0,0.5,Breakfast,Kitchen Freezer
+Eggo,Mini Chocolate Pancakes,15.00,7/7/2021,0,30,Breakfast,Basement Freezer
+Eggo,Waffles,49.00,?,0,2,Breakfast,Basement Freezer
+EVOL,Chicken Bowl,2.00,?,4,60,Protein,Pantry Freezer
+Flavorice,Ice Pop,113.00,?,0,0,Dessert,Basement Freezer
+Genaric,Chicken Tamale,2.00,?,3,3,Protein,Kitchen Freezer
+Genaric,Corn,8.00,?,54,60,Veggie,Kitchen Freezer
+Genaric,Hamburger Buns,4.00,?,30,30,Grain,Basement Freezer
+Genaric,Hotdog Buns,4.00,?,30,30,Grain,Basement Freezer
+Generic,Breakfast Sausage,30.00,?,15,15,Protein,Kitchen Freezer
+Lean Pocket,Chicken & Cheese,2.00,?,3,28,Protein,Pantry Freezer
+LeanCuisine,Chicken Enchilada,1.00,?,9,9,Protein,Kitchen Freezer
+LeanCuisine,Chicken Parmesan,3.00,2/1/2021,7,7,Protein,Kitchen Freezer
+LeanCuisine,Herb Chicken,2.00,?,6,6,Protein,Kitchen Freezer
+LeanCuisine,Spagetti,1.00,?,6,6,Protein,Kitchen Freezer
+LeanCuisine,Tortilla Fish,1.00,11/1/2020,4.5,4.5,Protein,Basement Freezer
+Misc,Wrapped Hot Dog,6.00,?,3,5,Protein,Pantry Freezer
+PopSicle,Jolly Rancher Popsickle,13.00,?,0,0,Dessert,Kitchen Freezer
+Saffron Road,Chicken Enchiladas Poblano,1.00,?,8,50,Protein,Pantry Freezer
+Schwan's,Asian Style Stir-Fri,1.00,?,6,6,Protein,Basement Freezer
+Schwan's,Baby Baker (Potato),1.00,?,7,25,Veggie,Basement Freezer
+Schwan's,Beef and Broccoli Skillet Meal,1.00,?,12,12,Protein,Basement Freezer
+Schwan's,Breaded chicken Breast Patties,2.00,?,3.5,23,Protein,Basement Freezer
+Schwan's,Cheddar Cheese Curds,2.00,?,13,13,Other?,Kitchen Freezer
+Schwan's,Cheeseburger,3.00,?,1,1,Protein,Basement Freezer
+Schwan's,Cheesy Chicken Broccoli Meal,1.00,?,15,20,Protein,Basement Freezer
+Schwan's,Chixken Romain Skillet Meal,1.00,?,14,14,Protein,Basement Freezer
+Schwan's,Classic Vanilla Ice Cream,1.00,?,0,0,Dessert,Basement Freezer
+Schwan's,Cookie and cream Ice cream (4lbs),1.00,?,0,0,Dessert,Basement Freezer
+Schwan's,Dinner Rolls,2.00,?,12,120,Grain,Basement Freezer
+Schwan's,Mini Beef Pot Roasts and Gravy,1.00,?,5,16,Protein,Basement Freezer
+Schwan's,Mini Corn Dogs,2.00,?,5,30,Protein,Kitchen Freezer
+Schwan's,Mini Deep Dish Cheese Pizzia,2.00,?,5,20,Protein,Kitchen Freezer
+Schwan's,Orange Chicken ,1.00,?,15,15,Protein,Basement Freezer
+Schwan's,Philly Style Beef,4.00,?,10,10,Protein,Basement Freezer
+Schwan's,Pork Pot Stickers,1.00,?,5,5,Protein,Basement Freezer
+Schwan's,Pork Ribs,1.00,?,45,55,Protein,Basement Freezer
+Schwan's,Prime Rib,4.00,?,15,15,Protein,Basement Freezer
+Schwan's,Quesidilla,1.00,?,2,14,Protein,Kitchen Freezer
+Schwan's,Single Deep Dish Sausage Pizza,3.00,?,4,18,Protein,Basement Freezer
+Schwan's,Southern Biscuit Dough,1.00,?,19,21,Grain,Pantry Freezer
+Schwan's,Straberry and Banna Blend,1.00,?,20,20,Fruit,Basement Freezer
+Schwan's,Sweet potato Fries,1.00,?,9,9,Veggie,Basement Freezer
+Schwan's,Vanella Nut Ice Cream Cone,20.00,?,0,0,Dessert,Basement Freezer
+Schwan's,Vegetable Fried Rice,1.00,?,3,11,Veggie,Basement Freezer
+Schwans,Ice Cream Cups,24.00,?,0,0,Dessert,Pantry Freezer
+Schwans,Shrimp Spring Rolls w/ Sauce,1.00,?,15,17,Protein,Pantry Freezer
+Schwans,Singles Deep Dish Cheese Pizza,3.00,?,4,18,Protein,Pantry Freezer
+Schwans,Singles Deep Dish Pepporoni Pizza,6.00,?,4,18,Protein,Pantry Freezer
+Smuckers,Uncrustables - Nuttella,2.00,?,5,5,Protein,Pantry Freezer
+Sukha,Chicken Curry,1.00,10/17/2020,4,40,Protein,Kitchen Freezer
+Sukhis,Chicken Tikka Masala,1.00,?,5,40,Protein,Pantry Freezer
+SuperPretzel,SuperPretzel,1.00,2/25/2020,0.5,0.5,Grain,Basement Freezer
+Sweet Earth,Pad Thai,1.00,2/1/2021,5,5,Protein,Kitchen Freezer
+Trader Joes,Asparagus Risotto,1.00,?,5,7,Veggie,Kitchen Freezer
+Trader Joes,Bao Buns,1.00,12/19/2020,1,1,Protein,Kitchen Freezer
+Trader Joes,Butter Chicken,1.00,1/18/2021,6,12,Protein,Kitchen Freezer
+Trader Joes,Carrot Spirals,1.00,11/1/2020,4,4,Veggie,Kitchen Freezer
+Trader Joes,Chicken Shu Mai,1.00,?,2,7,Protein,Kitchen Freezer
+Trader Joes,Mini Chixken WonTons,1.00,2/19/2021,2,7,Protein,Kitchen Freezer
+Trader Joes,Riced Cauliflower Bowl,1.00,?,6,6,Protein,Pantry Freezer
+Trader Joes,Tilapia Fish,1.00,?,25,25,Protein,Basement Freezer
+Wegmans,Bomb Pop ,8.00,?,0,0,Dessert,Pantry Freezer
+Wegmans,Broccoli,1.00,?,6,6,Veggie,Kitchen Freezer
+Wegmans,Cheese Tortellini,1.00,10/23/2020,4,45,Protein,Kitchen Freezer
+Wegmans,Chicken Breast BBQ,4.00,?,26,26,Protein,Basement Freezer
+Wegmans,Corn,4.00,8/25/2021,7,10,Veggie,Basement Freezer
+Wegmans,Edamame,2.00,4/21/2022,5,5,Veggie,Basement Freezer
+Wegmans,Organic Ground Beef,1.00,5/31/2020,20,20,Protein,Basement Freezer
+Wegmans,Potatoes Gratin,1.00,4/17/2021,30,30,Veggie,Kitchen Freezer
+Wegmans,Teriyaki Steak,1.00,7/16/2020,30,30,Protein,Basement Freezer
