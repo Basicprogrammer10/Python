@@ -1,8 +1,8 @@
 from datetime import datetime
-import time
+#import time
 
 Hour = 15
-Min = 0
+Min = 9
 
 def now():
     import Email
@@ -14,4 +14,4 @@ while True:
     if int(H) == Hour:
         if int(M) == Min:
             now()
-            time.sleep(65)
+            #time.sleep(65)
