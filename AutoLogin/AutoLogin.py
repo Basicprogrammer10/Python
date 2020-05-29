@@ -49,7 +49,7 @@ while True:
         pt = tp + 24 * 60
         ph = pt / 60
         pm = pt % 60
-        print(str(int(ph)) + ":" + str(pm))
+        print(str(int(ph)) + ":" + str(pm)) 
     else:
         pt = tp
         ph = pt / 60

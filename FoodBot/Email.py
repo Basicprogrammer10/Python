@@ -20,8 +20,8 @@ hor = Hour
 port = 587
 smtp_server = "smtp.gmail.com"
 sender_email = "sladefoodbot@gmail.com"
-#receiver_email = ["turtleslade@gmail.com", "connorslade@email.com", "4jackslade@gmail.com"]
-receiver_email = ["turtleslade@gmail.com", "connorslade@email.com"]
+receiver_email = ["turtleslade@gmail.com", "connorslade@email.com", "4jackslade@gmail.com"]
+#receiver_email = ["turtleslade@gmail.com", "connorslade@email.com"]
 password = "74DiMmTZkAgxPPJLBidJZATVCD4xDjVSzJXG52NTTf7M6MKXJ5u5chyD8cVq6wMzNsuTSoPQCQj2DDsmizeXbcFNu4mAzLq63rea"
 
 
@@ -105,8 +105,7 @@ Dessert: """+dessert[drand]+""""""
         server.login(sender_email, password)
         num = 1
         for i in receiver_email:
-            print(colored("Sending ("+str(num)+"/" +
-                          str(len(receiver_email))+") ("+i+")", 'green'))
+            print(colored("Sending ("+str(num)+"/" +str(len(receiver_email))+") ("+i+")", 'green'))
             server.sendmail(sender_email, i, message)
             num = num + 1
 
