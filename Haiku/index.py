@@ -1,6 +1,14 @@
 import random
+import csv 
+  
+filename ="words.csv"
 
-words = {'nose':1,'cat':1,'dog':1,'noser':2,'apple':2}
+with open(filename, 'r') as data: 
+      
+    for line in csv.DictReader(data): 
+        words = line 
+
+#words = {'nose':1,'cat':1,'dog':1,'noser':2,'apple':2}
 
 
 def nose(words,sila):

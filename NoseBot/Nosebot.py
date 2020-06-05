@@ -11,7 +11,7 @@ import time
 debug = 0
 
 Hour = random.randint(0,24)
-Min = random.randint(0,60)
+Min = random.randint(0,59)
 
 min = Min
 hor = Hour
