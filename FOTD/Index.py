@@ -23,7 +23,7 @@ file = open("SendTo.nose", "r", encoding="ascii",errors='ignore')
 receiver_email = file.readlines()
 file.close()
 print(receiver_email)
-password = "305931"
+password = ""
 
 def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
