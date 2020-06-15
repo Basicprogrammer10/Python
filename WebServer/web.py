@@ -1,12 +1,15 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
-import time
-import random
-import datetime
-import threading
-import ctypes
-import os
-import configparser
-from termcolor import colored
+try:
+    from http.server import BaseHTTPRequestHandler, HTTPServer
+    import time
+    import random
+    import datetime
+    import threading
+    import ctypes
+    import os
+    import configparser
+    from termcolor import colored
+except:
+    print(colored("Some Required Libraries Weren't Installed..\n", 'red'))
 global waitTimeMin
 global outputFile
 
@@ -2720,7 +2723,7 @@ if __name__ == "__main__":
                 print(colored("Config File couldn't be made...", 'red'))
     try:
         webServer = HTTPServer((hostName, serverPort), MyServer)
-        print("Server started http://%s:%s" % (hostName, serverPort))
+        print(colored("Server started http://"+str(hostName)+":"+str(serverPort), 'green'))
         collectData = threading.Thread(target=collect)
         collectData.start()
     except:
