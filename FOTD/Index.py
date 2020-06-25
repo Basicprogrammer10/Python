@@ -18,7 +18,6 @@ hor = Hour
 port = 587
 smtp_server = "smtp.gmail.com"
 sender_email = "connorslade@bernardsboe.com"
-#receiver_email = ["connorslade@bernardsboe.com"]
 file = open("SendTo.nose", "r", encoding="ascii",errors='ignore')
 receiver_email = file.readlines()
 file.close()
