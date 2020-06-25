@@ -17,13 +17,12 @@ min = Min
 hor = Hour
 port = 587
 smtp_server = "smtp.gmail.com"
-sender_email = "connorslade@bernardsboe.com"
-#receiver_email = ["connorslade@bernardsboe.com"]
+sender_email = "email@domain.com"#Change to sender Email
 file = open("SendTo.nose", "r", encoding="ascii",errors='ignore')
 receiver_email = file.readlines()
 file.close()
 print(receiver_email)
-password = "305931"
+password = "Password"#Change to password
 
 def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
