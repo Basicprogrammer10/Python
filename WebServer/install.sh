@@ -38,7 +38,7 @@ if [ $start = 'Y' ]; then
     echo "Editing rc.local..."
     cd /etc/
     touch rc.local
-    printf "cd /\ncd "$dir"\n./autorun.sh\nexit 0\n" > rc.local
+    printf "cd /\ncd "$dir"\n./autorun.sh\n" > rc.local
     chmod +x /etc/rc.local
 fi
 start=0
