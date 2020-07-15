@@ -34,4 +34,3 @@ def nose(words,sila):
 print(nose(words,8))
 print(nose(words,3))
 print(nose(words,7))
-print(nose(words,9))
