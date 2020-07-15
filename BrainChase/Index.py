@@ -7,7 +7,7 @@ import configparser
 import os
 import urllib.request
 from random import randint, shuffle
-ver = 3.14
+ver = 3.15
 low = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ']
 hi = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
@@ -229,7 +229,7 @@ else:
                                                                          str(ver), 'yellow') + " | " + colored("By: Connor Slade", 'green'))
 
         elif command == 'help':
-            print(colored("Debug         Lets you run code               ;CodeToRun\nDecode        Decodes Caesar ciphers          ;Text;File\nDuck          Duckduckgos Somthing            ;CuteTurtle\nExit          Exits the Shell\nHelp          Shows this nice mesage\nNose          Noses you\nUnmix         Unmixes a string                ;String;Auto\nVersion       Gives you Version Info", 'blue'))
+            print(colored("Debug       Lets you run code           ;CodeToRun\nDecode      Decodes Caesar ciphers      ;Text;File\nDuck        Duckduckgos Something        ;CuteTurtle\nExit        Exits the Shell\nHelp        Shows this nice message\nNose        Noses you\nUn Mix      Unmixes a string            ;String;Auto\nUpdate      Updates the program\nVersion     Gives you Version Info", 'blue'))
 
         elif command == 'duck':
             try:
@@ -281,6 +281,7 @@ else:
                         quit()
             except urllib.error.URLError:
                 print(colored("Can't connect to ConnorCode Servers...", 'red'))
+
         elif command == 'unmix':
             try:
                 try:
