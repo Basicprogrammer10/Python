@@ -214,7 +214,7 @@ else:
         update_data = urllib.request.urlopen("https://raw.githubusercontent.com/Basicprogrammer10/Python/master/BrainChase/BrainChase.version")
         config.read_string(update_data.read().decode())
         new_version = config.get('version_info', 'new_version')
-        if float(ver) <= float(new_version):
+        if float(ver) < float(new_version):
             print(colored("There is a newer version of this program, use the 'update' command to update...", 'magenta'))
     except:
         pass
