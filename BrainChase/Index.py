@@ -3,12 +3,16 @@ import argparse
 import sys
 import re
 import math
+import configparser
+import os
+import urllib.request
 from random import randint, shuffle
-ver = 3.12
+ver = 3.1
 low = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ']
 hi = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
       'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ']
+config = configparser.ConfigParser()
 ap = argparse.ArgumentParser()
 ap.add_argument("-t", "--text", required=False,
                 help="The Text (EX: -t 'KHOOR ZRUOG')")
@@ -42,7 +46,7 @@ def colored(text, color):
     elif color == 'reset':
         code = '\033[0m'
 
-    return code + text + "\033[0m"
+    return code + str(text) + "\033[0m"
 
 
 if args["version"] != False:
@@ -196,6 +200,38 @@ else:
                 print(colored("You Must Supply a Command", 'red'))
             except SyntaxError as e:
                 print(colored(e, 'cyan'))
+
+        elif command == 'update':
+            print(colored("Checking For Updates", 'yellow'))
+            update_data = urllib.request.urlopen("https://raw.githubusercontent.com/Basicprogrammer10/Python/master/BrainChase/BrainChase.version")
+            config.read_string(update_data.read().decode())
+            new_version = config.get('version_info', 'new_version')
+            if float(ver) == float(new_version):
+                print(colored("BrainChaseSolver™ ", "blue") + colored("is up to date!", 'green'))
+                print(colored("=====================", 'magenta'))
+                print(colored("Current Version: ", 'blue') + colored(ver,'cyan'))
+                print(colored("Newest Version:  ", 'blue') + colored(new_version,'cyan'))
+            elif float(ver) > float(new_version):
+                print(colored("You are on a Beta Release of ", 'green') + colored("BrainChaseSolver™ ", "blue"))
+                print(colored("=====================", 'magenta'))
+                print(colored("Current Version: ", 'blue') + colored(ver,'cyan'))
+                print(colored("Newest Version:  ", 'blue') + colored(new_version,'cyan'))
+            elif float(ver) < float(new_version):
+                print(colored("BrainChaseSolver™ ", "blue") + colored("is out of date...", 'red'))
+                print(colored("=====================", 'magenta'))
+                print(colored("Current Version: ", 'blue') + colored(ver,'cyan'))
+                print(colored("Newest Version:  ", 'blue') + colored(new_version,'cyan'))
+                update_input = input(colored("Would You Like To Update? (Y/N) ", 'magenta'))
+                if update_input.lower() == 'y':
+                    print(colored("BrainChaseSolver™ in Updating... ", "yellow"))
+                    update_code = urllib.request.urlopen("https://raw.githubusercontent.com/Basicprogrammer10/Python/master/BrainChase/Index.py")
+                    update_code_string = update_code.read().decode()
+                    update_output = open('BrainChaseSolverUpdate.py','w')
+                    update_output.write(update_code_string)
+            try:
+                pass
+            except:
+                pass
         elif command == 'unmix':
             try:
                 try:
