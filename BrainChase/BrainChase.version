@@ -1,3 +1,6 @@
 [version_info]
-new_version = 3.15
-update_date = 07152020
+new_version = 3.16
+update_date = 07162020
+[word_database]
+new_version = 1.0
+update_date = 07162020
