@@ -1,3 +1,4 @@
+filepath = 'v:\Programming\Python\BrainChase\Test\Index.py'
 #   © ConnorSlade 2020
 import argparse
 import sys
@@ -14,12 +15,6 @@ try:
     test = filepath
 except:
     filepath = "!"
-if filepath != None:
-        try:
-            open(filepath,'r')
-            just_updateed = True
-        except:
-            just_updateed = False
 low = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ']
 hi = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
@@ -74,50 +69,38 @@ elif args["nose"] != False:
     print(colored("^..^      /\n/_/\_____/\n   /\   /\\\n  /  \ /  \\", 'yellow'))
 
 elif args["update"] != False:
-    if just_updateed == False:
-        try:
-            print(colored("Checking For Updates", 'yellow'))
-            update_data = urllib.request.urlopen("https://raw.githubusercontent.com/Basicprogrammer10/Python/master/BrainChase/BrainChase.version")
-            config.read_string(update_data.read().decode())
-            new_version = config.get('version_info', 'new_version')
-            if float(ver) == float(new_version):
-                print(colored("BrainChaseSolver™ ", "blue") + colored("is up to date!", 'green'))
-                print(colored("=====================", 'magenta'))
-                print(colored("Current Version: ", 'blue') + colored(ver,'cyan'))
-                print(colored("Newest Version:  ", 'blue') + colored(new_version,'cyan'))
-            elif float(ver) > float(new_version):
-                print(colored("You are on a Beta Release of ", 'green') + colored("BrainChaseSolver™ ", "blue"))
-                print(colored("=====================", 'magenta'))
-                print(colored("Current Version: ", 'blue') + colored(ver,'cyan'))
-                print(colored("Newest Version:  ", 'blue') + colored(new_version,'cyan'))
-            elif float(ver) < float(new_version):
-                print(colored("BrainChaseSolver™ ", "blue") + colored("is out of date...", 'red'))
-                print(colored("=====================", 'magenta'))
-                print(colored("Current Version: ", 'blue') + colored(ver,'cyan'))
-                print(colored("Newest Version:  ", 'blue') + colored(new_version,'cyan'))
-                update_input = input(colored("Would You Like To Update? (Y/N) ", 'magenta'))
-                if update_input.lower() == 'y':
-                    print(colored("BrainChaseSolver™ in Updating... ", "yellow"))
-                    update_code = urllib.request.urlopen("https://raw.githubusercontent.com/Basicprogrammer10/Python/master/BrainChase/Index.py")
-                    update_code_string = update_code.read().decode()
-                    update_output = open('BrainChaseSolver_V' + new_version.replace('.','-') + '.py','w', encoding="utf-8")
-                    update_output.write(update_code_string)
-                    print(colored("Done!", "green"))
-                    print(colored('Run ', 'blue')+ colored('"BrainChaseSolver_V' + new_version.replace('.','-') + '.py"','cyan') + colored('to use V' + new_version, 'blue'))
-                    quit()
-        except urllib.error.URLError:
-            print(colored("Can't connect to ConnorCode Servers...", 'red'))
-    else:
-        update_input = input(colored("Would You Like To Remove the Old version of ", 'magenta') + colored("BrainChaseSolver™", 'blue') + colored(" ? (Y/N) ", 'magenta'))
-        if update_input.lower() == 'y':
-                try:
-                    os.remove(filepath) 
-                    print(colored("Done!", "green"))
-                    just_updateed = False
-                except:
-                    print(colored("Error Deleting Files", "red"))
-        else:
-            just_updateed = False
+    try:
+        print(colored("Checking For Updates", 'yellow'))
+        update_data = urllib.request.urlopen("https://raw.githubusercontent.com/Basicprogrammer10/Python/master/BrainChase/BrainChase.version")
+        config.read_string(update_data.read().decode())
+        new_version = config.get('version_info', 'new_version')
+        if float(ver) == float(new_version):
+            print(colored("BrainChaseSolver™ ", "blue") + colored("is up to date!", 'green'))
+            print(colored("=====================", 'magenta'))
+            print(colored("Current Version: ", 'blue') + colored(ver,'cyan'))
+            print(colored("Newest Version:  ", 'blue') + colored(new_version,'cyan'))
+        elif float(ver) > float(new_version):
+            print(colored("You are on a Beta Release of ", 'green') + colored("BrainChaseSolver™ ", "blue"))
+            print(colored("=====================", 'magenta'))
+            print(colored("Current Version: ", 'blue') + colored(ver,'cyan'))
+            print(colored("Newest Version:  ", 'blue') + colored(new_version,'cyan'))
+        elif float(ver) < float(new_version):
+            print(colored("BrainChaseSolver™ ", "blue") + colored("is out of date...", 'red'))
+            print(colored("=====================", 'magenta'))
+            print(colored("Current Version: ", 'blue') + colored(ver,'cyan'))
+            print(colored("Newest Version:  ", 'blue') + colored(new_version,'cyan'))
+            update_input = input(colored("Would You Like To Update? (Y/N) ", 'magenta'))
+            if update_input.lower() == 'y':
+                print(colored("BrainChaseSolver™ in Updating... ", "yellow"))
+                update_code = urllib.request.urlopen("https://raw.githubusercontent.com/Basicprogrammer10/Python/master/BrainChase/Index.py")
+                update_code_string = update_code.read().decode()
+                update_output = open('BrainChaseSolver_V' + new_version.replace('.','-') + '.py','w', encoding="utf-8")
+                update_output.write("filepath = '" + str(Path(__file__).absolute()) + "'\n" + update_code_string)
+                print(colored("Done!", "green"))
+                print(colored('Run ', 'blue')+ colored('"BrainChaseSolver_V' + new_version.replace('.','-') + '.py"','cyan') + colored('to use V' + new_version, 'blue'))
+                quit()
+    except urllib.error.URLError:
+        print(colored("Can't connect to ConnorCode Servers...", 'red'))
                 
 elif args["unmix"] != None:
     try:
@@ -308,7 +291,7 @@ else:
                             print(colored("BrainChaseSolver™ in Updating... ", "yellow"))
                             update_code = urllib.request.urlopen("https://raw.githubusercontent.com/Basicprogrammer10/Python/master/BrainChase/Index.py")
                             update_code_string = update_code.read().decode()
-                            update_output = open('BrainChaseSolver_V' + new_version.replace('.','-') + '.py','w', encoding="utf-8")
+                            update_output = open('BrainChaseSolver_V' + new_version.replace('.','-') + '.py','w')
                             update_output.write(update_code_string)
                             print(colored("Done!", "green"))
                             print(colored('Run ', 'blue')+ colored('"BrainChaseSolver_V' + new_version.replace('.','-') + '.py"','cyan') + colored('to use V' + new_version, 'blue'))
@@ -321,7 +304,6 @@ else:
                         try:
                             os.remove(filepath) 
                             print(colored("Done!", "green"))
-                            just_updateed = False
                         except:
                             print(colored("Error Deleting Files", "red"))
                 else:
