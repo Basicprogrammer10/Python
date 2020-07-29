@@ -6,7 +6,7 @@ folder = 'data'
 names = ['Delta68','salc1']
 key = '671c96d4-c517-4dfb-a5ce-edbe0e7c0003'
 t = 5 #Wait Tile
-ver = 1.1
+ver = 1.2
 ##############################
 def startserver(port,folder):
     os.system("cd "+folder+" && python3 -m http.server "+str(port))
@@ -68,5 +68,5 @@ while True:
             open('data/'+name.lower()+'.csv','r')
         except:
             open('data/'+name.lower()+'.csv','a').write("Time,Kills,Deaths,Wins,Losses,GamesPlayed\n")
-        open('data/'+name+'.csv','a').write(str(datetime.now().strftime('%Y-%m-%d %H:%M'))+","+str(BedwarsKills)+","+str(BedwarsDeaths)+","+str(BedwarsWins)+","+str(BedwarsLosses)+","+str(GamesPlayed)+"\n")
+        open('data/'+name.lower()+'.csv','a').write(str(datetime.now().strftime('%Y-%m-%d %H:%M'))+","+str(BedwarsKills)+","+str(BedwarsDeaths)+","+str(BedwarsWins)+","+str(BedwarsLosses)+","+str(GamesPlayed)+"\n")
     time.sleep(t*60)
