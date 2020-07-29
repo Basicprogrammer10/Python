@@ -1,2 +1,4 @@
-from datetime import datetime
-print(datetime.now().strftime('%Y-%m-%d %H:%M'))
+try:
+    open('nose.txt','r')
+except:
+    print("NOSE")

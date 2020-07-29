@@ -1,10 +1,16 @@
-import requests, json, os, time
+import requests, json, os, time, threading
 from datetime import datetime, date
 ############ VARS ############
-name = 'Delta68'
+port = 8888
+folder = 'data'
+names = ['Delta68','salc1']
 key = '671c96d4-c517-4dfb-a5ce-edbe0e7c0003'
 t = 5 #Wait Tile
 ##############################
+def startserver(port,folder):
+    os.system("cd "+folder+" && python3 -m http.server "+str(port))
+t1 = threading.Thread(target=startserver, name='t1', args=(port,folder)) 
+t1.start() 
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
 def colored(text, color):
@@ -27,35 +33,39 @@ def colored(text, color):
     return code + str(text) + "\033[0m"
 cls()
 while True:
-    data = ''
-    print(colored("Getting Player Data...",'green'))
-    try:
-        response = requests.get("https://api.hypixel.net/player?key="+str(key)+"&name=" + str(name.lower()))
-    except:
-        print(colored("Error...",'red'))
-        quit()
-    data = json.loads(response.text)
-    print(colored("Success!!",'green'))
-    try:
-        BedwarsKills =  data["player"]["stats"]["Bedwars"]["kills_bedwars"]
-    except KeyError:
-        BedwarsKills = 0
-    try:
-        BedwarsDeaths = data["player"]["stats"]["Bedwars"]["deaths_bedwars"]
-    except KeyError:
-        BedwarsDeaths = 0
-    try:
-        BedwarsWins =   data["player"]["stats"]["Bedwars"]["wins_bedwars"]
-    except KeyError:
-        BedwarsWins = 0
-    try:
-        BedwarsLosses = data["player"]["stats"]["Bedwars"]["losses_bedwars"]
-    except KeyError:
-        BedwarsLosses = 0
-    try:
-            GamesPlayed = data["player"]["stats"]["Bedwars"]["games_played_bedwars"]
-    except KeyError:
-            GamesPlayed = 0
-
-    open('data.csv','a').write(str(datetime.now().strftime('%Y-%m-%d %H:%M'))+","+str(BedwarsKills)+","+str(BedwarsDeaths)+","+str(BedwarsWins)+","+str(BedwarsLosses)+","+str(GamesPlayed)+"\n")
+    for name in names:
+        data = ''
+        print(colored("Getting Player Data...",'green'))
+        try:
+            response = requests.get("https://api.hypixel.net/player?key="+str(key)+"&name=" + str(name.lower()))
+        except:
+            print(colored("Error...",'red'))
+            quit()
+        data = json.loads(response.text)
+        print(colored("Success!!",'green'))
+        try:
+            BedwarsKills =  data["player"]["stats"]["Bedwars"]["kills_bedwars"]
+        except KeyError:
+            BedwarsKills = 0
+        try:
+            BedwarsDeaths = data["player"]["stats"]["Bedwars"]["deaths_bedwars"]
+        except KeyError:
+            BedwarsDeaths = 0
+        try:
+            BedwarsWins =   data["player"]["stats"]["Bedwars"]["wins_bedwars"]
+        except KeyError:
+            BedwarsWins = 0
+        try:
+            BedwarsLosses = data["player"]["stats"]["Bedwars"]["losses_bedwars"]
+        except KeyError:
+            BedwarsLosses = 0
+        try:
+                GamesPlayed = data["player"]["stats"]["Bedwars"]["games_played_bedwars"]
+        except KeyError:
+                GamesPlayed = 0
+        try:
+            open('data/'+name.lower()+'.csv','r')
+        except:
+            open('data/'+name.lower()+'.csv','a').write("Time,Kills,Deaths,Wins,Losses,GamesPlayed\n")
+        open('data/'+name+'.csv','a').write(str(datetime.now().strftime('%Y-%m-%d %H:%M'))+","+str(BedwarsKills)+","+str(BedwarsDeaths)+","+str(BedwarsWins)+","+str(BedwarsLosses)+","+str(GamesPlayed)+"\n")
     time.sleep(t*60)
