@@ -6,6 +6,7 @@ folder = 'data'
 names = ['Delta68','salc1']
 key = '671c96d4-c517-4dfb-a5ce-edbe0e7c0003'
 t = 5 #Wait Tile
+ver = 1.1
 ##############################
 def startserver(port,folder):
     os.system("cd "+folder+" && python3 -m http.server "+str(port))
@@ -31,7 +32,7 @@ def colored(text, color):
         code = '\033[0m'
 
     return code + str(text) + "\033[0m"
-cls()
+print(colored("Running Version: ",'blue')+colored(str(ver),'magenta'))
 while True:
     for name in names:
         data = ''
