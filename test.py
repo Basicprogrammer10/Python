@@ -1,4 +1,4 @@
-try:
-    open('nose.txt','r')
-except:
-    print("NOSE")
+from pynput.mouse import Controller
+mouse = Controller()
+while True:
+    print(mouse.position)
