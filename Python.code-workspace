@@ -7,6 +7,7 @@
 	"settings": {
 		"toggleFileEventLogging": true,
 		"showGitMetrics": true,
-		"color-highlight.markerType": "underline"
+		"color-highlight.markerType": "underline",
+		"python.pythonPath": "C:\\Users\\turtl\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
 	}
 }
