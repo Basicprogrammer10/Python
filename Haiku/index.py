@@ -31,6 +31,6 @@ def nose(words,sila):
         else:
             pass
         
-print(nose(words,5))
+print(nose(words,8))
+print(nose(words,3))
 print(nose(words,7))
-print(nose(words,5))

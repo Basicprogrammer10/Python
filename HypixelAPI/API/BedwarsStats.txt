@@ -1,0 +1,10 @@
+|:x:||beds_lost_bedwars
+|:x:||coins
+|:x:||deaths_bedwars
+|:x:||Experience
+|:x:||games_played_bedwars
+|:x:||games_played_bedwars_1
+|:x:||items_purchased_bedwars
+|:x:||kills_bedwars
+|:x:||losses_bedwars
+|:x:||wins_bedwars

@@ -1,0 +1,4 @@
+debug;1
+setvar;x;uin;Num1: 
+setvar;y;uin;Num2: 
+uout;subtract;x;y

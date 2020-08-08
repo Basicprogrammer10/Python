@@ -1,0 +1,20 @@
+{
+    "device-type": "screened",
+    "mode": "screen",
+    "zone": "one",
+    "datas": [
+        {
+          "lines": [
+            {
+              "has-text": true,
+              "context-frame-key": "first-line",
+              "wrap": 1
+            },
+            {
+              "has-text": true,
+              "context-frame-key": "second-line"
+            }
+          ]
+        }
+      ]
+}
