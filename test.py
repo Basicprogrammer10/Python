@@ -1,4 +1,4 @@
-from pynput.mouse import Controller
-mouse = Controller()
+########## TEST ##########
+x = 0
 while True:
-    print(mouse.position)
+    print(x := x + 1)

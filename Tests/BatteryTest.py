@@ -2,8 +2,8 @@ import datetime
 ############ VARS ############
 Output = 'batterytest.nose'
 CsvExport = 'data.csv'
-#Delay = '60000'
-Delay = '1000'
+Delay = '60000'
+#Delay = '1000'
 
 initialise = {'working':'a'}
 toImport = {'time':'','os.path':'','psutil':'','datetime':'datetime'}
@@ -98,8 +98,7 @@ def Init(Filename,CsvExport):
                 print(colored("Start Time:   ", 'blue') + colored(datetime.utcfromtimestamp(int(working[1][0])/1000).strftime('%Y-%m-%d %H:%M:%S') + ' (' + str(int(working[1][0])/1000) + ')','magenta'))
                 print(colored("End Time:     ", 'blue') + colored(datetime.utcfromtimestamp(int(working[len(working)-1][0])/1000).strftime('%Y-%m-%d %H:%M:%S') + ' (' + str(int(working[len(working)-1][0])/1000) + ')','magenta'))
                 print(colored("Elapsed Time: ", 'blue') + colored(datetime.utcfromtimestamp(int(int(working[len(working)-1][0])/1000) - int(working[1][0])/1000).strftime('%H:%M:%S') + ' (' + str(int(working[len(working)-1][0])/1000 - int(working[1][0])/1000) + ')', 'magenta'))
-
-                #print(working)#FIXME:
+                print(colored("Data Logged:  ", 'blue') + colored(len(working)-2, 'magenta'))
             else:
                 print(colored("Exiting...",'red'))
             quit()

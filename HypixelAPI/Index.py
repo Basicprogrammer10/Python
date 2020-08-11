@@ -3,7 +3,7 @@ from datetime import datetime, date
 ############ VARS ############
 configfile = 'config.ini'
 name = 'Delta68'
-#key = '671c96d4-c517-4dfb-a5ce-edbe0e7c0003'
+key = '671c96d4-c517-4dfb-a5ce-edbe0e7c0003'
 ##############################
 def cls():
     os.system('cls' if os.name=='nt' else 'clear')
@@ -27,9 +27,12 @@ def colored(text, color):
     return code + str(text) + "\033[0m"
 cls()
 config = configparser.ConfigParser()
-config.read_string(open(configfile,'r').read())
-info_options = config.get('options', 'infomation')
-key = config.get('API', 'key')
+try:
+    config.read_string(open(configfile,'r').read())
+    info_options = config.get('options', 'infomation')
+    key = config.get('API', 'key')
+except:
+    pass
 info = []
 for i in info_options:
     info.append(i)
