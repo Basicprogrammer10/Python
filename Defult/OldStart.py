@@ -1,10 +1,6 @@
-import datetime, time
 ############ VARS ############
-Input = 'data.csv'
-Output = 'FormatedData.csv'
-
-initialise = {'working':'a','data':'a','a':'i'}
-toImport = {'time':'','os.path':'','psutil':'','datetime':'datetime'}
+initialise = {}
+toImport  =  {}
 ########### SETUP ###########
 for i in toImport:
     if toImport[i] == '':
@@ -40,30 +36,9 @@ def colored(text, color):
         code = '\033[0m'
     return code + str(text) + "\033[0m"
 ######### FUNCTIONS #########
-def ReadData(FileName):
-    working = open(FileName,'r').readlines()
-    for i in working:
-        data.append(i.replace('\n','').split(','))
-    return data
-def ConvertTime(data):
-    for i in data:
-        working.append(str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(int(i[0])/1000))))
-    return working
-def MergeData(time,main):
-    a = 0
-    for i in main:
-        b = str(time[a]) +','+ str(main[a][1])
-        working.append(b.split(','))
-        a = a + 1
-    return working
 
-def WriteData(outFile,data):
-    file = open(outFile,'a')
-    for i in data:
-        file.write(i[0] + ',' + i[1] + '\n')
 ####### MAIN FUNCTION #######
 def main():
-    data = ReadData(Input)
-    WriteData(Output, MergeData(ConvertTime(data),data))
+    pass
 if __name__ == "__main__":
     main()
