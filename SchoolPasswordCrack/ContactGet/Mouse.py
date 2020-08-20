@@ -1,18 +1,26 @@
 import mouse,time,keyboard
 ############ VARS ############
+cps = 1
 
+autoEat = False
+limit = 3000
+
+running = False
+i = 0
 ##############################
 
-keyboard.wait('esc')
-
 while True:
-    mouse.wheel(-0.63)
-    mouse.click('left')
-    time.sleep(1)
- 
-#i = 0.5
-#while True:
-#    keyboard.wait('esc')
-#    i = i + 0.01
-#    mouse.wheel(i-i*2)
-#    print(i-i*2)
+    if running:
+        time.sleep(1/cps)
+        mouse.click('left')
+        i = i + 1
+        if keyboard.is_pressed('k'):
+            running = False
+        if i == limit:
+            i = 0
+            mouse.hold('right')
+            time.sleep(5)
+            mouse.release('right')
+    else:
+        if keyboard.is_pressed('j'):
+            running = True

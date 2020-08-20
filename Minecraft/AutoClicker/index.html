@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+background: #474747;
+font-family: Roboto, Helvetica, Arial, sans-serif;
+margin: 0;
+padding: 0;
+text-align: center;
+}
+#title {
+  text-align: center;
+  font-size: 300%;
+  margin-bottom: 0px;
+  animation-delay: 2s;
+}
+.slidecontainer{
+  display: flex;
+  flex-direction: column;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: fit-content;}
+  
+</style>
+<title>{title}</title>
+</head>
+<body>
+<h1 id="title">Minecraft AutoClicker</h1>
+<h2>By: Sigma76</h2><br>
+<h2>Settings</h2>
+<div class="slidecontainer">
+<span>
+<h3>&#128070; CPS: <span id="CPS_TEXT"></span></h3>
+<button type="button" onclick="cpsadd(1)">&#10133</button><button type="button" onclick="cpsadd(-1)">&#10134;</button><br>
+<input type="range" min="1" max="100" value="10" class="slider" id="CPS">
+</span>
+<span>
+<h3>&#127827; Eat Click: <span id="EatClick_TEXT"></span></h3>
+<button type="button" onclick="eatclickadd(1)">&#10133</button><button type="button" onclick="eatclickadd(-1)">&#10134;</button><br>
+<input type="range" min="0" max="10000" value="10" class="slider" id="EatClick">
+</span>
+</div>
+<script>
+    function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+    var slider = document.getElementById("CPS");
+    var output = document.getElementById("CPS_TEXT");
+    var slider2 = document.getElementById("EatClick");
+    var output2 = document.getElementById("EatClick_TEXT");
+    output.innerHTML = slider.value;
+    output2.innerHTML = slider2.value;
+    
+    function cpsadd(num){
+        output.innerHTML = Number(slider.value) + num
+        slider.value = Number(slider.value) + num
+        httpGet("/CPS/"+slider.value);
+    }
+    function eatclickadd(num){
+        output2.innerHTML = Number(slider2.value) + num
+        slider2.value = Number(slider2.value) + num
+        httpGet("/CPS/"+slider2.value);
+    }
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+      httpGet("/CPS/"+this.value);
+    }
+    slider2.oninput = function() {
+      output2.innerHTML = this.value;
+      httpGet("/EATCLICK/"+this.value);
+    }
+    
+    </script>
+</body>
+</html> 

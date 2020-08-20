@@ -27,15 +27,16 @@ def colored(text, color):
     return code + str(text) + "\033[0m"
 cls()
 config = configparser.ConfigParser()
-try:
-    config.read_string(open(configfile,'r').read())
-    info_options = config.get('options', 'infomation')
-    key = config.get('API', 'key')
-except:
-    pass
+#try:
+config.read_string(open(configfile,'r').read())
+info_options = config.get('options', 'infomation')
+key = config.get('API', 'key')
+#except:
+#    pass
 info = []
 for i in info_options:
     info.append(i)
+
 
 questions = [inquirer.Checkbox('Info',message="What Infomation are you interested in?",choices=[('Options', 'O'),('Info', 'I'),('Bedwars', 'B'),],default=info)]
 answers = inquirer.prompt(questions)
