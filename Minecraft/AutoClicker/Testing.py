@@ -4,8 +4,8 @@ version = 'BETA 0.15'
 hostName = "localhost"
 serverPort = 8080
 #### CODE ####
-initialise = {'data':"''",'index':'0'}
-toImport  =  {'http.server':'BaseHTTPRequestHandler, HTTPServer','time':'','os':'','urllib.parse':'urlparse'}
+initialise = {'data':"''",'index':'0','cps':'10','running':'False','a':'0','eatclick':'0'}
+toImport  =  {'http.server':'BaseHTTPRequestHandler, HTTPServer','time':'','os':'','urllib.parse':'urlparse','sys':'','threading':'','keyboard':'','mouse':''}
 ########### SETUP ###########
 for i in toImport:
     defult = False if toImport[i] != '' else True
@@ -16,9 +16,25 @@ def colored(text, color):
 for i in initialise:
     exec(i + '=' + initialise[i])
 ######### FUNCTIONS #########
-class Click():
-    def Basic():
-        pass
+def Clicker():
+    global running,a,eatclick
+    while thred:
+        limit = int(eatclick)
+        if running:
+            time.sleep(1/int(cps))
+            mouse.click('left')
+            a = int(a) + 1
+            if keyboard.is_pressed('k'):
+                running = False
+            if a == limit:
+                a = 0
+                mouse.hold('right')
+                time.sleep(5)
+                mouse.release('right')
+        else:
+            if keyboard.is_pressed('j'):
+                running = True
+        
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
         global cps, eatclick, mode, running
@@ -36,18 +52,27 @@ class MyServer(BaseHTTPRequestHandler):
         elif 'MODE=' in urlp[4]:
             workng = urlp[4].split('MODE=')
             mode = int(workng[1])
+        elif '/CPS/' in urlp[2]:
+            cps = urlp[2].split('/CPS/')[1]
+        elif '/EATCLICK/' in urlp[2]:
+            eatclick = urlp[2].split('/EATCLICK/')[1]
 ####### MAIN FUNCTION #######
 def main():
+    global thred
     print(colored('Minecraft Autoclicker Server ','blue')+colored(version,'magenta'))
     os.chdir('.')
     webServer = HTTPServer((hostName, serverPort), MyServer)
     print(colored("Server started http://%s:%s" % (hostName, serverPort),'green'))
+    thred = True
+    x = threading.Thread(target=Clicker, args=())
+    x.start()
     try:
         webServer.serve_forever()
     except KeyboardInterrupt:
         pass
     webServer.server_close()
     print(colored("Server stopped.",'red'))
+    thred = False
 
 if __name__ == "__main__":
     main()
