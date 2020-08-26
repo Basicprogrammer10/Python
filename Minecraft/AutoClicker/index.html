@@ -27,6 +27,7 @@ text-align: center;
 <title>{title}</title>
 </head>
 <body>
+<span id="TEST-ID"></span>
 <h1 id="title">Minecraft AutoClicker</h1>
 <h2>By: Sigma76</h2><br>
 <h2>Settings</h2>
@@ -41,6 +42,16 @@ text-align: center;
 <button type="button" onclick="eatclickadd(1)">&#10133</button><button type="button" onclick="eatclickadd(-1)">&#10134;</button><br>
 <input type="range" min="0" max="10000" value="10" class="slider" id="EatClick">
 </span>
+<form action="">
+  <label for="cars">Mode:</label>
+  <select name="mode" id="mode">
+    <option value="01">Basic</option>
+    <option value="02">Concrete</option>
+    <option value="03">Hold</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
 </div>
 <script>
     function httpGet(theUrl)
@@ -78,5 +89,16 @@ text-align: center;
     }
     
     </script>
+<script>
+  while (true) {
+ var obj = JSON.parse(httpGet('/DOMGET/'));
+ try{
+   document.getElementById(obj.ID).innerHTML = obj.DATA;
+ }catch{
+   
+ }
+ sleep(5000)
+}
+</script>
 </body>
 </html> 

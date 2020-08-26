@@ -2,7 +2,7 @@ import requests, json, os, inquirer, configparser
 from datetime import datetime, date
 ############ VARS ############
 configfile = 'config.ini'
-name = 'Delta68'
+name = 'Theta33'
 key = '671c96d4-c517-4dfb-a5ce-edbe0e7c0003'
 ##############################
 def cls():

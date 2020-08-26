@@ -1,14 +1,13 @@
 ############ VARS ############
-import urllib.parse
 ### SERVER ###
 hostName = "localhost"
 serverPort = 8080
 #### PAGE ####
-JsonData = ['{"ID":"TEST-ID","DATA":"NOSE"}','{"ID":"TEST-ID2","DATA":"NOSE2"}']
+JsonData = ['{"ID":"TEST-ID","DATA":"NOSE"}','{"ID":"TEST-ID2","DATA":"NOSE2"}','{"ID":"TEST-ID03","DATA":"NOSE03"}','{"ID":"TEST-ID004","DATA":"NOSE004"}']
 HTML = 'index.html'
 #### CODE ####
-initialise = {'data':"''",'index':'0'}
-toImport  =  {'http.server':'BaseHTTPRequestHandler, HTTPServer','time':'','os':'','urllib.parse':'urlparse'}
+initialise = {'data':"''",'getindex':'0'}
+toImport  =  {'http.server':'BaseHTTPRequestHandler, HTTPServer','time':'','os':''}
 ########### SETUP ###########
 for i in toImport:
     defult = False if toImport[i] != '' else True
@@ -19,27 +18,24 @@ def colored(text, color):
 for i in initialise:
     exec(i + '=' + initialise[i])
 ######### FUNCTIONS #########
-class Click():
-    def Basic():
-        pass
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
-        global cps, eatclick, mode
+        global getindex
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
-        urlp = urlparse(self.path)
-        print(urlparse(self.path)[3])#FIXME:
-        if urlp[2] == '/':
+        if self.path == '/':
             data = str(open(HTML,'r',encoding='utf-8').read())
             self.wfile.write(bytes(data, "utf-8"))
-        elif urlp[2] == '/DOMGET/':
-            pass
-            #self.wfile.write(bytes(JsonData, 'utf-8'))
-        if 'mode=' in urlp[4]:
-            workng = urlp[4].split('mode=')
-            mode = int(workng[1])
-            print(mode)
+        elif "DOMGET" in self.path:
+            try:
+                self.wfile.write(bytes(JsonData[getindex], 'utf-8'))
+                getindex = getindex + 1
+            except IndexError:
+                getindex = 0
+                self.wfile.write(bytes(JsonData[getindex], 'utf-8'))
+                getindex = getindex + 1
+
 ####### MAIN FUNCTION #######
 def main():
     os.chdir('.')

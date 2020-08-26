@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+background: #474747;
+font-family: Roboto, Helvetica, Arial, sans-serif;
+margin: 0;
+padding: 0;
+text-align: center;
+}
+#title {
+  text-align: center;
+  font-size: 300%;
+  margin-bottom: 0px;
+  animation-delay: 2s;
+}
+.slidecontainer{
+  display: flex;
+  flex-direction: column;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: fit-content;}
+  
+</style>
+<title>{title}</title>
+</head>
+<body>
+<span id="TEST-ID"></span>
+<h1 id="title">Minecraft AutoClicker</h1>
+<h2>By: Sigma76</h2><br>
+<h2>Settings</h2>
+<div class="slidecontainer">
+<span>
+<h3>&#128070; CPS: <span id="CPS_TEXT"></span></h3>
+<button type="button" onclick="cpsadd(1)">&#10133</button><button type="button" onclick="cpsadd(-1)">&#10134;</button><br>
+<input type="range" min="1" max="100" value="10" class="slider" id="CPS">
+</span>
+<span>
+<h3>&#127827; Eat Click: <span id="EatClick_TEXT"></span></h3>
+<button type="button" onclick="eatclickadd(1)">&#10133</button><button type="button" onclick="eatclickadd(-1)">&#10134;</button><br>
+<input type="range" min="0" max="10000" value="10" class="slider" id="EatClick">
+</span>
+<form action="/action_page.php">
+  <label for="cars">Choose a car:</label>
+  <select name="cars" id="cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="opel">Opel</option>
+    <option value="audi">Audi</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+</div>
+<script>
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+function httpGet(theUrl){
+var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+  xmlHttp.send( null );
+  return xmlHttp.responseText;
+}
+while (true) {
+ var obj = JSON.parse(httpGet('/DOMGET/'));
+  document.write(obj.ID+' | '+obj.DATA+'<br>');
+  //document.getElementById(obj.ID).innerHTML = obj.DATA;
+ sleep(500)
+}
+</script>
+</body>
+</html> 
