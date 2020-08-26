@@ -14,6 +14,7 @@ text-align: center;
   font-size: 300%;
   margin-bottom: 0px;
   animation-delay: 2s;
+  color: #964141;
 }
 .slidecontainer{
   display: flex;
@@ -59,7 +60,9 @@ text-align: center;
 </head>
 <body>
 <span id="TEST-ID"></span>
+<div id="titles">
 <h1 id="title">Minecraft AutoClicker</h1>
+</div>
 <h2>By: Sigma76</h2><br>
 <h2>Settings</h2>
 <div class="slidecontainer">
@@ -84,7 +87,7 @@ text-align: center;
   <input type="submit" value="Submit">
 </form>
 </div><br>
-<button type="button" onclick="httpGet('/start/')" class="button1"><strong>S T A R T</strong></button> <button type="button" onclick="httpGet('/stop/')" class="button2"><strong>S T O P</strong></button> 
+<button type="button" onclick="httpGet('/start/');document.getElementById('title').style.color = '#419643'" class="button1"><strong>S T A R T</strong></button> <button type="button" onclick="httpGet('/stop/');document.getElementById('title').style.color = '#964141'" class="button2"><strong>S T O P</strong></button> 
 <script>
     function httpGet(theUrl)
 {

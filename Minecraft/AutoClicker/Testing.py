@@ -4,7 +4,7 @@ version = 'BETA 0.15'
 hostName = "localhost"
 serverPort = 8080
 #### CODE ####
-initialise = {'data':"''",'index':'0','cps':'10','running':'False','a':'0','eatclick':'0'}
+initialise = {'data':"''",'index':'0','cps':'10','running':'False','a':'0','eatclick':'0','skey':'"j"'}
 toImport  =  {'http.server':'BaseHTTPRequestHandler, HTTPServer','time':'','os':'','urllib.parse':'urlparse','sys':'','threading':'','keyboard':'','mouse':''}
 ########### SETUP ###########
 for i in toImport:
@@ -32,7 +32,7 @@ def Clicker():
                 time.sleep(5)
                 mouse.release('right')
         else:
-            if keyboard.is_pressed('j'):
+            if keyboard.is_pressed(skey):
                 running = True
         
 class MyServer(BaseHTTPRequestHandler):
