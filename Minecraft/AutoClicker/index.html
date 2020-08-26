@@ -63,7 +63,7 @@ text-align: center;
 <div id="titles">
 <h1 id="title">Minecraft AutoClicker</h1>
 </div>
-<h2>By: Sigma76</h2><br>
+<h2 id="sigma">By: Sigma76</h2><br>
 <h2>Settings</h2>
 <div class="slidecontainer">
 <span>
@@ -124,16 +124,5 @@ text-align: center;
     }
     
     </script>
-<script>
-  while (true) {
- var obj = JSON.parse(httpGet('/DOMGET/'));
- try{
-   document.getElementById(obj.ID).innerHTML = obj.DATA;
- }catch{
-   
- }
- sleep(5000)
-}
-</script>
 </body>
 </html> 

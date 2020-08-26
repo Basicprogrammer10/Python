@@ -1,10 +1,12 @@
+#TODO: Add Support for showing and changing keybinds
+#TODO: Show if active running and stoped
 ############ VARS ############
 ### SERVER ###
-version = 'BETA 0.15'
+version = 'BETA 0.27'
 hostName = "localhost"
 serverPort = 8080
 #### CODE ####
-initialise = {'data':"''",'index':'0','cps':'10','running':'False','a':'0','eatclick':'0','skey':'"j"'}
+initialise = {'data':"''",'index':'0','cps':'10','running':'False','a':'0','eatclick':'0','skey':'"j"','active':'False'}
 toImport  =  {'http.server':'BaseHTTPRequestHandler, HTTPServer','time':'','os':'','urllib.parse':'urlparse','sys':'','threading':'','keyboard':'','mouse':''}
 ########### SETUP ###########
 for i in toImport:
@@ -17,15 +19,15 @@ for i in initialise:
     exec(i + '=' + initialise[i])
 ######### FUNCTIONS #########
 def Clicker():
-    global running,a,eatclick
+    global running,a,eatclick,active
     while thred:
         limit = int(eatclick)
-        if running:
+        if running and active:
             time.sleep(1/int(cps))
             mouse.click('left')
             a = int(a) + 1
             if keyboard.is_pressed('k'):
-                running = False
+                active = False
             if a == limit:
                 a = 0
                 mouse.hold('right')
@@ -33,7 +35,7 @@ def Clicker():
                 mouse.release('right')
         else:
             if keyboard.is_pressed(skey):
-                running = True
+                active = True
         
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
