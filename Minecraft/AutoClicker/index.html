@@ -22,7 +22,38 @@ text-align: center;
   justify-content: space-evenly;
   align-items: center;
   width: fit-content;}
-  
+  .button1 {
+  border-radius: 12px;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button1:hover{
+  background-color: #419643;
+}
+.button2 {
+  border-radius: 12px;
+  background-color: #af4c4c; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button2:hover{
+  background-color: #964141;
+}
 </style>
 <title>{title}</title>
 </head>
@@ -44,7 +75,7 @@ text-align: center;
 </span>
 <form action="">
   <label for="cars">Mode:</label>
-  <select name="mode" id="mode">
+  <select name="MODE" id="mode">
     <option value="01">Basic</option>
     <option value="02">Concrete</option>
     <option value="03">Hold</option>
@@ -52,7 +83,8 @@ text-align: center;
   <br><br>
   <input type="submit" value="Submit">
 </form>
-</div>
+</div><br>
+<button type="button" onclick="httpGet('/start/')" class="button1"><strong>S T A R T</strong></button> <button type="button" onclick="httpGet('/stop/')" class="button2"><strong>S T O P</strong></button> 
 <script>
     function httpGet(theUrl)
 {

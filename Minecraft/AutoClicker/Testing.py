@@ -1,11 +1,8 @@
 ############ VARS ############
-import urllib.parse
 ### SERVER ###
+version = 'BETA 0.15'
 hostName = "localhost"
 serverPort = 8080
-#### PAGE ####
-JsonData = ['{"ID":"TEST-ID","DATA":"NOSE"}','{"ID":"TEST-ID2","DATA":"NOSE2"}']
-HTML = 'index.html'
 #### CODE ####
 initialise = {'data':"''",'index':'0'}
 toImport  =  {'http.server':'BaseHTTPRequestHandler, HTTPServer','time':'','os':'','urllib.parse':'urlparse'}
@@ -24,24 +21,24 @@ class Click():
         pass
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
-        global cps, eatclick, mode
+        global cps, eatclick, mode, running
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
         urlp = urlparse(self.path)
-        print(urlparse(self.path)[3])#FIXME:
         if urlp[2] == '/':
-            data = str(open(HTML,'r',encoding='utf-8').read())
+            data = str(open('index.html','r',encoding='utf-8').read())
             self.wfile.write(bytes(data, "utf-8"))
-        elif urlp[2] == '/DOMGET/':
-            pass
-            #self.wfile.write(bytes(JsonData, 'utf-8'))
-        if 'mode=' in urlp[4]:
-            workng = urlp[4].split('mode=')
+        elif urlp[2] == '/start/':
+            running = True
+        elif urlp[2] == '/stop/':
+            running = False
+        elif 'MODE=' in urlp[4]:
+            workng = urlp[4].split('MODE=')
             mode = int(workng[1])
-            print(mode)
 ####### MAIN FUNCTION #######
 def main():
+    print(colored('Minecraft Autoclicker Server ','blue')+colored(version,'magenta'))
     os.chdir('.')
     webServer = HTTPServer((hostName, serverPort), MyServer)
     print(colored("Server started http://%s:%s" % (hostName, serverPort),'green'))
