@@ -1,8 +1,9 @@
 #TODO: Add Support for showing and changing keybinds
 #TODO: Show if active running and stoped
+#TODO: Add Mode 03 & 04
 ############ VARS ############
 ### SERVER ###
-version = 'BETA 0.27'
+version = 'BETA 0.30'
 hostName = "localhost"
 serverPort = 8080
 #### CODE ####
@@ -37,7 +38,21 @@ def Clicker():
             else:
                 if keyboard.is_pressed(skey):
                     active = True
-
+        elif mode == 2:
+            if running and active:
+                if a == 1:
+                    mouse.press('right')
+                    mouse.press('left')
+                    a = 0
+                if keyboard.is_pressed('k'):
+                    mouse.release()
+                    mouse.release('right')
+                    active = False
+                    a = 0
+            else:
+                if keyboard.is_pressed(skey):
+                    active = True
+                    a = 1
         
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -58,9 +73,9 @@ class MyServer(BaseHTTPRequestHandler):
             cps = urlp[2].split('/CPS/')[1]
         elif '/EATCLICK/' in urlp[2]:
             eatclick = urlp[2].split('/EATCLICK/')[1]
-        
         if 'MODE=' in urlp[4]:
-            print("^^MODE^^")#FIXME:
+            mouse.release('right')
+            mouse.release()
             workng = urlp[4].split('MODE=')
             mode = int(workng[1])
 ####### MAIN FUNCTION #######
@@ -69,7 +84,7 @@ def main():
     print(colored('Minecraft Autoclicker Server ','blue')+colored(version,'magenta'))
     os.chdir('.')
     webServer = HTTPServer((hostName, serverPort), MyServer)
-    print(colored("Server started http://%s:%s" % (hostName, serverPort),'green'))
+    print(colored("Web Server started ",'green')+colored("http://%s:%s" % (hostName, serverPort),'cyan'))
     thred = True
     x = threading.Thread(target=Clicker, args=())
     x.start()
