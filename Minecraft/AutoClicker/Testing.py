@@ -7,7 +7,7 @@ version = 'BETA 0.30'
 hostName = "localhost"
 serverPort = 8080
 #### CODE ####
-initialise = {'data':"''",'index':'0','cps':'10','running':'False','a':'0','eatclick':'0','skey':'"j"','active':'False','mode':'1'}
+initialise = {'data':"''",'index':'0','cps':'10','running':'False','a':'0','eatclick':'0','spkey':'"k"','skey':'"j"','active':'False','mode':'1'}
 toImport  =  {'http.server':'BaseHTTPRequestHandler, HTTPServer','time':'','os':'','urllib.parse':'urlparse','sys':'','threading':'','keyboard':'','mouse':''}
 ########### SETUP ###########
 for i in toImport:
