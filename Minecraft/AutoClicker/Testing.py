@@ -6,7 +6,7 @@ version = 'BETA 0.27'
 hostName = "localhost"
 serverPort = 8080
 #### CODE ####
-initialise = {'data':"''",'index':'0','cps':'10','running':'False','a':'0','eatclick':'0','skey':'"j"','active':'False'}
+initialise = {'data':"''",'index':'0','cps':'10','running':'False','a':'0','eatclick':'0','skey':'"j"','active':'False','mode':'1'}
 toImport  =  {'http.server':'BaseHTTPRequestHandler, HTTPServer','time':'','os':'','urllib.parse':'urlparse','sys':'','threading':'','keyboard':'','mouse':''}
 ########### SETUP ###########
 for i in toImport:
@@ -19,23 +19,25 @@ for i in initialise:
     exec(i + '=' + initialise[i])
 ######### FUNCTIONS #########
 def Clicker():
-    global running,a,eatclick,active
+    global running,a,eatclick,active,mode
     while thred:
         limit = int(eatclick)
-        if running and active:
-            time.sleep(1/int(cps))
-            mouse.click('left')
-            a = int(a) + 1
-            if keyboard.is_pressed('k'):
-                active = False
-            if a == limit:
-                a = 0
-                mouse.hold('right')
-                time.sleep(5)
-                mouse.release('right')
-        else:
-            if keyboard.is_pressed(skey):
-                active = True
+        if mode == 1:
+            if running and active:
+                time.sleep(1/int(cps))
+                mouse.click('left')
+                a = int(a) + 1
+                if keyboard.is_pressed('k'):
+                    active = False
+                if a == limit:
+                    a = 0
+                    mouse.hold('right')
+                    time.sleep(5)
+                    mouse.release('right')
+            else:
+                if keyboard.is_pressed(skey):
+                    active = True
+
         
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -44,6 +46,7 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_header("Content-type", "text/html")
         self.end_headers()
         urlp = urlparse(self.path)
+        print(urlp[4])
         if urlp[2] == '/':
             data = str(open('index.html','r',encoding='utf-8').read())
             self.wfile.write(bytes(data, "utf-8"))
@@ -51,13 +54,15 @@ class MyServer(BaseHTTPRequestHandler):
             running = True
         elif urlp[2] == '/stop/':
             running = False
-        elif 'MODE=' in urlp[4]:
-            workng = urlp[4].split('MODE=')
-            mode = int(workng[1])
         elif '/CPS/' in urlp[2]:
             cps = urlp[2].split('/CPS/')[1]
         elif '/EATCLICK/' in urlp[2]:
             eatclick = urlp[2].split('/EATCLICK/')[1]
+        
+        if 'MODE=' in urlp[4]:
+            print("^^MODE^^")#FIXME:
+            workng = urlp[4].split('MODE=')
+            mode = int(workng[1])
 ####### MAIN FUNCTION #######
 def main():
     global thred
