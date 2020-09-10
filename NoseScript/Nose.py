@@ -53,7 +53,6 @@ def uout(text):
             formated_args = formated_args + """user[""" + str(c) +"""],"""
         exec("""exec_to_print=""" + command + """(""" + formated_args + """)""")
         if exec_to_print != None:
-            if 
             print(exec_to_print)
     elif text in program_vars:
         print(program_vars[text],end=' ')
