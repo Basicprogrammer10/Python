@@ -1,8 +1,9 @@
+import requests
 ############ VARS ############
 DEBUG = True
 OutputFile = 'Skin.png'
 Name = 'Sigma76'
-shellFunctions = ['nameuuid','exit']
+shellFunctions = ['nameuuid','exit','stats']
 toImport  =  {'base64':'','requests':'','json':'','time':'gmtime, strftime, time','PIL':'Image','re':'','datetime':'datetime'}
 ########### SETUP ###########
 for i in toImport:
@@ -62,6 +63,11 @@ def ImageOpen(FileName):
     im = Image.open(FileName)  
     im.show()
     DebugPrint('Image Open','Image Opend!','green')
+def StatDataGet():
+    data = JsonParse(requests.post('https://api.mojang.com/orders/statistics','{"metricKeys": ["item_sold_minecraft","prepaid_card_redeemed_minecraft"]}').text)
+    DebugPrint('Stats',"\033[36mTotal Sales: \033[34m"+str(data['total']),'white')
+    DebugPrint('Stats',"\033[36mSales last 24h: \033[34m"+str(data['last24h']),'white')
+    DebugPrint('Stats',"\033[36mSales PerSeconds: \033[34m"+str(data['saleVelocityPerSeconds']),'white')
 ###### Shell FUNCTIONS ######
 def exit(user):
     DebugPrint('Shell','Exiting...','red')
@@ -72,6 +78,8 @@ def nameuuid(user):
         DebugPrint('NameUUID',NametoUUID(uuid),'white')
     elif len(uuid) > 16:
         DebugPrint('NameUUID',UUIDtoName(uuid),'white')
+def stats(user):
+    StatDataGet()
 ####### MAIN FUNCTION #######
 def main():
     #SkinDL(OutputFile if 'OutputFile' in globals() else None,JsonParse(Base64DECODE(JsonParse(APIdataGet(NametoUUID(Name)))['properties'][0]['value']))['textures']['SKIN']['url'])
