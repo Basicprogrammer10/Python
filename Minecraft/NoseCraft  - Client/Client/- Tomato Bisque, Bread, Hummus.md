@@ -1,0 +1,3 @@
+- Tomato Bisque, Bread, Hummus, Grapes
+- French toast, Fruit Yogurt parfet?, Sausage, 
+- Foil Pack French Dip, Watermellon \[Apple], Corn

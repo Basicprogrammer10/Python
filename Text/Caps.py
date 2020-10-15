@@ -31,4 +31,4 @@ class text:
             final = final + i
         return final
 
-print(text.Random("its not a problem anymore"))
+print(text.MakeNotBig('Foil Pack French Dip Sandwiches'))

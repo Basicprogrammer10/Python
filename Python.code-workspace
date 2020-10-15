@@ -8,6 +8,6 @@
 		"toggleFileEventLogging": true,
 		"showGitMetrics": true,
 		"color-highlight.markerType": "underline",
-		"python.pythonPath": "/usr/bin/python3"
+		"python.pythonPath": "C:\\Users\\Connor Slade\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe"
 	}
 }
