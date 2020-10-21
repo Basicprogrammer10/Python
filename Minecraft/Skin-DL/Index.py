@@ -3,7 +3,7 @@ import requests
 DEBUG = True
 OutputFile = 'Skin.png'
 Name = 'Sigma76'
-shellFunctions = ['nameuuid','exit','stats','apistats']
+shellFunctions = ['nameuuid','exit','stats','apistatus']
 toImport  =  {'base64':'','requests':'','json':'','time':'gmtime, strftime, time','PIL':'Image','re':'','datetime':'datetime'}
 ########### SETUP ###########
 for i in toImport:
@@ -90,8 +90,8 @@ def nameuuid(user):
         DebugPrint('NameUUID',UUIDtoName(uuid),'white')
 def stats(user):
     StatDataGet()
-def apistats(user):
-    pass
+def apistatus(user):
+    GetApiStatus()
 ####### MAIN FUNCTION #######
 def main():
     #SkinDL(OutputFile if 'OutputFile' in globals() else None,JsonParse(Base64DECODE(JsonParse(APIdataGet(NametoUUID(Name)))['properties'][0]['value']))['textures']['SKIN']['url'])
@@ -108,5 +108,4 @@ def main():
         else:
             DebugPrint('Shell','\033[34m"'+command+'" \033[31mis not a Valid Command','red')
 if __name__ == "__main__":
-    #main()
-    GetApiStatus()
+    main()
