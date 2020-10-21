@@ -3,7 +3,7 @@ import requests
 DEBUG = True
 OutputFile = 'Skin.png'
 Name = 'Sigma76'
-shellFunctions = ['nameuuid','exit','stats']
+shellFunctions = ['nameuuid','exit','stats','apistats']
 toImport  =  {'base64':'','requests':'','json':'','time':'gmtime, strftime, time','PIL':'Image','re':'','datetime':'datetime'}
 ########### SETUP ###########
 for i in toImport:
@@ -68,6 +68,16 @@ def StatDataGet():
     DebugPrint('Stats',"\033[36mTotal Sales: \033[34m"+str(data['total']),'white')
     DebugPrint('Stats',"\033[36mSales last 24h: \033[34m"+str(data['last24h']),'white')
     DebugPrint('Stats',"\033[36mSales PerSeconds: \033[34m"+str(data['saleVelocityPerSeconds']),'white')
+def GetApiStatus():
+    DebugPrint('API Status','Downloading Data','cyan')
+    data = JsonParse(requests.get('https://status.mojang.com/check').content)
+    DebugPrint('API Status','Download Complete','green')
+    for x in data:
+        for i in ['minecraft.net','session.minecraft.net','account.mojang.com','authserver.mojang.com','sessionserver.mojang.com','api.mojang.com','textures.minecraft.net','mojang.com']:
+            try:
+                working = {'green':'\033[32m','red':'\033[31m','yellow':'\033[33m'}
+                DebugPrint('INFO',working[x[i]] + i,'white')
+            except: pass
 ###### Shell FUNCTIONS ######
 def exit(user):
     DebugPrint('Shell','Exiting...','red')
@@ -80,6 +90,8 @@ def nameuuid(user):
         DebugPrint('NameUUID',UUIDtoName(uuid),'white')
 def stats(user):
     StatDataGet()
+def apistats(user):
+    pass
 ####### MAIN FUNCTION #######
 def main():
     #SkinDL(OutputFile if 'OutputFile' in globals() else None,JsonParse(Base64DECODE(JsonParse(APIdataGet(NametoUUID(Name)))['properties'][0]['value']))['textures']['SKIN']['url'])
@@ -96,4 +108,5 @@ def main():
         else:
             DebugPrint('Shell','\033[34m"'+command+'" \033[31mis not a Valid Command','red')
 if __name__ == "__main__":
-    main()
+    #main()
+    GetApiStatus()
