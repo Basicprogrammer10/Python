@@ -1,0 +1,1 @@
+print(open("data.csv").read())

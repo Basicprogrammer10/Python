@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Short Link</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/index.css" />
+</head>
+
+<body>
+    <h1 style="text-align: center;font-size: 50px;padding-bottom: 0px;margin-bottom: 0px;">Short Link</h1>
+    <h2 style="text-align: center;font-size: 25px;padding-bottom: 0px;margin-top: 0px;">By: Connor Slade</h2>
+    <div class="login-page">
+        <div class="form">
+            <form class="login-form" id="login" action="javascript:setup();">
+                <input type="text" placeholder="Link" />
+            </form>
+            <button id="loginSubmit" onclick="setup();">Create</button>
+        </div>
+    </div>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="MessageBox"></p>
+        </div>
+    </div>
+    <script>
+
+        function makeid(length) {
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@$%';
+            var charactersLength = characters.length;
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        }
+
+        function resetFeild() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function setup() {
+            input = document.getElementById('login').elements[0].value; code = makeid(3);
+            if (input == '') { htmlMessage("MessageBox", "Enter a Vaild URL", ['color = "orange"']); window.setTimeout(resetFeild, 3000); return }
+            if (input.includes("https://")) { } else if (input.includes("https://")) { } else { input = "http://" + input }
+            fetch(window.location.href + "api/?url=" + btoa(input) + "?code=" + btoa(code)).then(function (response) {console.log(response);});
+            document.getElementById("login").elements[0].value = ""; htmlMessage("MessageBox", "Your Short Link is: "+window.location.origin+"/r/"+code, ['color = "green"']);
+
+        }
+
+        function htmlMessage(id, data, css) {
+            document.getElementById(id).innerHTML = data;
+            for (i = 0; i < css.length; i++) {
+                eval('document.getElementById("' + id + '").style.' + css[i] + ";");
+            }
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+            modal.style.display = "block";
+            span.onclick = function () {
+                modal.style.display = "none";
+            };
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            };
+        }
+    </script>
+</body>
+
+</html>
