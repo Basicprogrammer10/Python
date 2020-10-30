@@ -11,5 +11,10 @@
     "python.pythonPath": "C:\\Users\\turtl\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
     "cSpell.ignoreWords": [
         "minecraft"
-    ]
+    ],
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+},
+"python.linting.enabled": false
 }
