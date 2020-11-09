@@ -22,14 +22,21 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p id="MessageBox"></p>
+            <p id="MessageBox" style="margin-bottom: 24px;"></p>
+            <div class="tooltip">
+                <button id="coppyButton" onclick="myFunction()" onmouseout="outFunc()">
+                    <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+                    Copy ShortLink
+                </button>
+            </div>
         </div>
     </div>
-    <script>
 
+    <script>
         function makeid(length) {
-            var result = '';
-            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@$%';
+            var result = "";
+            var characters =
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@$%";
             var charactersLength = characters.length;
             for (var i = 0; i < length; i++) {
                 result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -42,12 +49,43 @@
         }
 
         function setup() {
-            input = document.getElementById('login').elements[0].value; code = makeid(3);
-            if (input == '') { htmlMessage("MessageBox", "Enter a Vaild URL", ['color = "orange"']); window.setTimeout(resetFeild, 3000); return }
-            if (input.includes("https://")) { } else if (input.includes("https://")) { } else { input = "http://" + input }
-            fetch(window.location.href + "api/?url=" + btoa(input) + "?code=" + btoa(code)).then(function (response) {console.log(response);});
-            document.getElementById("login").elements[0].value = ""; htmlMessage("MessageBox", "Your Short Link is: "+window.location.origin+"/r/"+code, ['color = "green"']);
-
+            input = document.getElementById("login").elements[0].value;
+            code = makeid(3);
+            if (input == "") {
+                htmlMessage("MessageBox", "Enter a Vaild URL", ['color = "orange"']);
+                window.setTimeout(resetFeild, 3000);
+                return;
+            }
+            if (input.includes("https://")) {
+            } else if (input.includes("https://")) {
+            } else {
+                input = "http://" + input;
+            }
+            try {
+                fetch(
+                    window.location.href + "api/?url=" + btoa(input) + "?code=" + btoa(code)
+                ).then(function (response) {
+                    if (response.status === 201) {
+                        //document.getElementById("login").elements[0].value = "";
+                        window.code = code;
+                        htmlMessage(
+                            "MessageBox",
+                            "Your Short Link is: " + window.location.origin + "/r/" + code,
+                            ['color = "green"']
+                        );
+                    } else if (response.status === 409) {
+                        setup();
+                    } else {
+                        htmlMessage(
+                            "MessageBox",
+                            "An Error Occurred... What?? don't blame me!",
+                            ['color = "red"']
+                        );
+                    }
+                });
+            } catch {
+                confirm("OOF");
+            }
         }
 
         function htmlMessage(id, data, css) {
@@ -67,6 +105,25 @@
                 }
             };
         }
+
+        function myFunction() {
+            var oldValue = document.getElementById("login").elements[0].value;
+            document.getElementById("login").elements[0].value = window.location.origin + "/r/" + window.code;
+            var copyText = document.getElementById("login").elements[0];
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            document.getElementById("login").elements[0].value = '';
+
+            var tooltip = document.getElementById("myTooltip");
+            tooltip.innerHTML = "Copied: " + copyText.value;
+        }
+
+        function outFunc() {
+            var tooltip = document.getElementById("myTooltip");
+            tooltip.innerHTML = "Copy to clipboard";
+        }
+
     </script>
 </body>
 

@@ -2,7 +2,7 @@
 hostName = "0.0.0.0"
 serverPort = 8080
 
-files = ["index.css", "favicon.ico"]
+files = ["index.css", "favicon.ico", 'index.js']
 responceFile = "assets/responce.html"
 database = "data/data.json"
 
@@ -46,8 +46,8 @@ class MyServer(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-type", "text/html")
             self.end_headers()
-            self.wfile.write(
-                bytes(formatReadResponce(responceFile, "/create/"), "utf-8"))
+            self.wfile.write(bytes(formatReadResponce(
+                responceFile, "/create/"), "utf-8"))
         elif urlps[1] == "create":
             try:
                 if urlps[2] == "api":
@@ -58,16 +58,12 @@ class MyServer(BaseHTTPRequestHandler):
                     if inDatabase(str(
                             base64.b64decode(working[1][1]).decode())):
                         self.send_response(409)
+                        self.end_headers()
                     else:
                         self.send_response(201)
-                        databaseWrite(
-                            database,
-                            '"' +
-                            str(base64.b64decode(working[1][1]).decode()) +
-                            '":{"url":"' +
-                            str(base64.b64decode(working[0][1]).decode()) +
-                            '"}}',
-                        )
+                        self.end_headers()
+                        databaseWrite(database, '"' + str(base64.b64decode(working[1][1]).decode(
+                        )) + '":{"url":"' + str(base64.b64decode(working[0][1]).decode()) + '"}}',)
                 else:
                     self.send_response(200)
                     self.send_header("Content-type", "text/html")
