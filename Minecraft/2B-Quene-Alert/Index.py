@@ -1,9 +1,8 @@
-import configparser
 ############ VARS ############
 configFile = "config.cfg"
 
-initialise = {}
-toImport = {'win10toast': 'ToastNotifier', 'time': '', 'configparser': ''}
+toImport = {'win10toast': 'ToastNotifier',
+            'time': '', 'configparser': '', 'os': ''}
 ########### SETUP ###########
 for i in toImport:
     defult = False if toImport[i] != '' else True
@@ -17,22 +16,31 @@ def colored(text, color):
     return '\033[' + ColorCodes[str(color).lower()] + 'm' + str(text) + "\033[0m"
 
 
-for i in initialise:
-    exec(i + '=' + initialise[i])
+def cls(do):
+    if do:
+        os.system('cls' if os.name == 'nt' else 'clear')
 ######### FUNCTIONS #########
 
 
 def configRead(configFile):
-    global logFile, text, index
+    global logFile, text, index, doClear, delay
     config = configparser.ConfigParser()
     config.read(configFile)
     logFile = config.get('Main', 'logFile')
     text = config.get('Main', 'text')
     index = int(config.get('Main', 'index'))
+    delay = int(config.get('Main', 'delay'))
+    doClear = bool(config.get('Main', 'doClear'))
+
+
+def autoPath():
+    global logFile
+    if logFile.lower() == "auto":
+        logFile = os.getenv('APPDATA')+"\\.minecraft\\logs\\latest.log"
 
 
 def Alert(Title, Text):
-    ToastNotifier().show_toast(Title, Text, icon_path="Clock.ico", duration=30)
+    ToastNotifier().show_toast(Title, Text, icon_path="Icon.ico", duration=30)
 
 
 def GetData(file):
@@ -40,23 +48,26 @@ def GetData(file):
     if text in data[len(data)-2]:
         return data[len(data)-2].split(text + ' ')[1]
     else:
-        return 0
+        return False
 
 ####### MAIN FUNCTION #######
 
 
 def main():
     configRead(configFile)
+    autoPath()
     working = ''
     while True:
         data = GetData(logFile)
-        if int(data) < index and data != working:
+        if int(data) < index and data != working and data != False:
             working = data
+            cls(doClear)
             print(colored('2B2T QUEUE: '+str(data), 'green'))
             Alert("2B2T QUEUE", "Posion: " + str(data))
-        elif data != working:
+        elif data != working and data != False:
+            cls(doClear)
             print(colored('2B2T QUEUE: '+str(data), 'yellow'))
-        time.sleep(5)
+        time.sleep(delay)
 
 
 if __name__ == "__main__":
