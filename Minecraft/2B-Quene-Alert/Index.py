@@ -31,6 +31,7 @@ def configRead(configFile):
     index = int(config.get('Main', 'index'))
     delay = int(config.get('Main', 'delay'))
     doClear = bool(config.get('Main', 'doClear'))
+    autoPath()
 
 
 def autoPath():
@@ -55,7 +56,6 @@ def GetData(file):
 
 def main():
     configRead(configFile)
-    autoPath()
     working = ''
     while True:
         data = GetData(logFile)
