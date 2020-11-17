@@ -47,7 +47,12 @@ def Alert(Title, Text):
 def GetData(file):
     data = open(file, 'r').read().split('\n')
     if text in data[len(data)-2]:
-        return data[len(data)-2].split(text + ' ')[1]
+        if '§' in data[len(data)-2].split(text + ' ')[1]:
+            for i in data[len(data)-2].split(text + ' ')[1].split('§'):
+                if len(i) > 1:
+                    return i[-(len(i)-1):]
+        else:
+            return data[len(data)-2].split(text + ' ')[1]
     else:
         return False
 
