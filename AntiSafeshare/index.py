@@ -2,7 +2,7 @@
 DEBUG = True
 
 toImport = {'urllib.request': '', 'datetime': 'datetime',
-            'sys': '', 'bs4': 'BeautifulSoup', 'urllib.parse': 'urlparse'}
+            'sys': ''}
 ########### SETUP ###########
 for i in toImport:
     defult = False if toImport[i] != '' else True
@@ -28,7 +28,7 @@ def getUrl():
     try:
         url = str(sys.argv[1])
     except IndexError:
-        DebugPrint('Startup', 'Please Give Safe share URL', 'red')
+        DebugPrint('Startup', 'Please Give a Supported Link', 'red')
         exit()
 
 
@@ -44,26 +44,51 @@ def doDataGet(url, data, headers):
         exit()
 
 
-def youtubeParse(data):
-    DebugPrint('Data Parse', ' Starting Data Parse', 'cyan')
+def doParse(url, data):
+    if 'video.link' in url.lower():
+        return youtubeParseVL(data)
+    elif 'safeshare.tv' in url.lower():
+        return youtubeParseSS(data)
+    else:
+        DebugPrint(
+            'URL', 'Error Parsing URL \033[34m(Make sure it is a Supported Link)', 'red')
+        return 0
+
+
+def youtubeParseSS(data):
+    DebugPrint('Data Parse', ' Starting Data Parse \033[33mSafe Share', 'cyan')
     try:
-        soup = BeautifulSoup(data, features="lxml")
-        parse = urlparse(soup.find_all(id="iframe-embed")[0].get('src'))
-        parse = parse[4].split('&')[0].split('=')[1]
+        parse = str(data).split('iframe')[18].split(
+            '\\')[3].split('?')[1].split('&')[0].split('=')[1]
         DebugPrint('Data Parse', ' Done Parsing: \033[34m'+parse, 'green')
         return parse
     except:
         DebugPrint(
-            'Data Parse', ' Error Parsing Webpage \033[34m(Make sure it is a SafeShare Link)', 'red')
+            'Data Parse', ' Error Parsing Webpage \033[34m(Make sure it is a Supported Link)', 'red')
+        exit()
+
+
+def youtubeParseVL(data):
+    DebugPrint('Data Parse', ' Starting Data Parse \033[33mVideo Link', 'cyan')
+    try:
+        parse = str(data).split('<script>')[2]
+        parse = str(parse).split(',')[1].split("'")[1].split('\\')[0]
+        DebugPrint('Data Parse', ' Done Parsing: \033[34m'+parse, 'green')
+        return parse
+    except IndentationError:
+        DebugPrint(
+            'Data Parse', ' Error Parsing Webpage \033[34m(Make sure it is a Supported Link)', 'red')
         exit()
 ####### MAIN FUNCTION #######
 
 
 def main():
+    DebugPrint(
+        'System', '     Welcome To Anti Safe share! \033[34mVersion: 3', 'white')
     getUrl()
     data = doDataGet(url, None,
                      {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko/20100101 Firefox/82.0'}).read()
-    result = youtubeParse(data)
+    result = doParse(url, data)
     print()
     DebugPrint(
         'Result', '     Youtube Link:\033[34m https://www.youtube.com/watch?v='+result, 'green')
