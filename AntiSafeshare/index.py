@@ -1,5 +1,6 @@
 ############ VARS ############
 DEBUG = True
+userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko/20100101 Firefox/82.0'
 
 toImport = {'urllib.request': '', 'datetime': 'datetime',
             'sys': ''}
@@ -45,6 +46,7 @@ def doDataGet(url, data, headers):
 
 
 def doParse(url, data):
+    print()
     if 'video.link' in url.lower():
         return youtubeParseVL(data)
     elif 'safeshare.tv' in url.lower():
@@ -58,11 +60,17 @@ def doParse(url, data):
 def youtubeParseSS(data):
     DebugPrint('Data Parse', ' Starting Data Parse \033[33mSafe Share', 'cyan')
     try:
-        parse = str(data).split('iframe')[18].split(
-            '\\')[3].split('?')[1].split('&')[0].split('=')[1]
+        try:
+            parse = str(data).split('iframe')[18].split('\\')[
+                3].split('?')[1].split('&')[0].split('=')[1]
+            pre = 'https://www.youtube.com/watch?v='
+        except IndexError:
+            parse = str(data).split('iframe')[
+                18].split('\\')[0].split('"')[4].split('?')[0].split('/')[4]
+            pre = 'https://vimeo.com/'
         DebugPrint('Data Parse', ' Done Parsing: \033[34m'+parse, 'green')
-        return parse
-    except:
+        return [parse, pre]
+    except IndentationError:
         DebugPrint(
             'Data Parse', ' Error Parsing Webpage \033[34m(Make sure it is a Supported Link)', 'red')
         exit()
@@ -73,9 +81,10 @@ def youtubeParseVL(data):
     try:
         parse = str(data).split('<script>')[2]
         parse = str(parse).split(',')[1].split("'")[1].split('\\')[0]
+        pre = 'https://www.youtube.com/watch?v='
         DebugPrint('Data Parse', ' Done Parsing: \033[34m'+parse, 'green')
-        return parse
-    except IndentationError:
+        return [parse, pre]
+    except:
         DebugPrint(
             'Data Parse', ' Error Parsing Webpage \033[34m(Make sure it is a Supported Link)', 'red')
         exit()
@@ -84,14 +93,12 @@ def youtubeParseVL(data):
 
 def main():
     DebugPrint(
-        'System', '     Welcome To Anti Safe share! \033[34mVersion: 3', 'white')
+        'System', '     Welcome To Anti Safe share! \033[34mVersion: 3.5', 'white')
     getUrl()
-    data = doDataGet(url, None,
-                     {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:82.0) Gecko/20100101 Firefox/82.0'}).read()
-    result = doParse(url, data)
-    print()
+    result = doParse(url, doDataGet(
+        url, None, {'User-Agent': userAgent}).read())
     DebugPrint(
-        'Result', '     Youtube Link:\033[34m https://www.youtube.com/watch?v='+result, 'green')
+        'Result', '     Link:\033[34m '+result[1] + result[0], 'green')
 
 
 if __name__ == "__main__":
