@@ -18,9 +18,9 @@ def colored(text, color):
 ######### FUNCTIONS #########
 
 
-def DebugPrint(Catagory, Text, Color):
+def DebugPrint(pre, Catagory, Text, Color):
     if DEBUG == True:
-        print(colored('['+datetime.now().strftime("%H:%M:%S")+'] ', 'yellow') +
+        print(colored(pre + '['+datetime.now().strftime("%H:%M:%S")+'] ', 'yellow') +
               colored('['+Catagory+'] ', 'magenta')+colored(Text, Color))
 
 
@@ -29,36 +29,36 @@ def getUrl():
     try:
         url = str(sys.argv[1])
     except IndexError:
-        DebugPrint('Startup', 'Please Give a Supported Link', 'red')
+        DebugPrint('', 'Startup', 'Please Give a Supported Link', 'red')
         exit()
 
 
 def doDataGet(url, data, headers):
-    DebugPrint('Data Get', '   Downloading Webpage: \033[34m'+url, 'cyan')
+    DebugPrint('', 'Data Get', '   Downloading Webpage: \033[34m'+url, 'cyan')
     try:
         req = urllib.request.Request(url, data=data, headers=headers)
         data = urllib.request.urlopen(req)
-        DebugPrint('Data Get', '   Download Complete!', 'green')
+        DebugPrint('', 'Data Get', '   Download Complete!', 'green')
         return data
     except:
-        DebugPrint('Data Get', '   Error Downloading Webpage', 'red')
+        DebugPrint('', 'Data Get', '   Error Downloading Webpage', 'red')
         exit()
 
 
 def doParse(url, data):
-    print()
     if 'video.link' in url.lower():
         return youtubeParseVL(data)
     elif 'safeshare.tv' in url.lower():
         return youtubeParseSS(data)
     else:
         DebugPrint(
-            'URL', 'Error Parsing URL \033[34m(Make sure it is a Supported Link)', 'red')
+            '', 'URL', 'Error Parsing URL \033[34m(Make sure it is a Supported Link)', 'red')
         return 0
 
 
 def youtubeParseSS(data):
-    DebugPrint('Data Parse', ' Starting Data Parse \033[33mSafe Share', 'cyan')
+    DebugPrint('', 'Data Parse',
+               ' Starting Data Parse \033[33mSafe Share', 'cyan')
     try:
         try:
             parse = str(data).split('iframe')[18].split('\\')[
@@ -68,37 +68,38 @@ def youtubeParseSS(data):
             parse = str(data).split('iframe')[
                 18].split('\\')[0].split('"')[4].split('?')[0].split('/')[4]
             pre = 'https://vimeo.com/'
-        DebugPrint('Data Parse', ' Done Parsing: \033[34m'+parse, 'green')
+        DebugPrint('', 'Data Parse', ' Done Parsing: \033[34m'+parse, 'green')
         return [parse, pre]
     except IndentationError:
         DebugPrint(
-            'Data Parse', ' Error Parsing Webpage \033[34m(Make sure it is a Supported Link)', 'red')
+            '', 'Data Parse', ' Error Parsing Webpage \033[34m(Make sure it is a Supported Link)', 'red')
         exit()
 
 
 def youtubeParseVL(data):
-    DebugPrint('Data Parse', ' Starting Data Parse \033[33mVideo Link', 'cyan')
+    DebugPrint('', 'Data Parse',
+               ' Starting Data Parse \033[33mVideo Link', 'cyan')
     try:
         parse = str(data).split('<script>')[2]
         parse = str(parse).split(',')[1].split("'")[1].split('\\')[0]
         pre = 'https://www.youtube.com/watch?v='
-        DebugPrint('Data Parse', ' Done Parsing: \033[34m'+parse, 'green')
+        DebugPrint('', 'Data Parse', ' Done Parsing: \033[34m'+parse, 'green')
         return [parse, pre]
     except:
         DebugPrint(
-            'Data Parse', ' Error Parsing Webpage \033[34m(Make sure it is a Supported Link)', 'red')
+            '', 'Data Parse', ' Error Parsing Webpage \033[34m(Make sure it is a Supported Link)', 'red')
         exit()
 ####### MAIN FUNCTION #######
 
 
 def main():
     DebugPrint(
-        'System', '     Welcome To Anti Safe share! \033[34mVersion: 3.5', 'white')
+        '', 'System', '     Welcome To Anti Safe share! \033[34mVersion: 3.5', 'white')
     getUrl()
     result = doParse(url, doDataGet(
         url, None, {'User-Agent': userAgent}).read())
     DebugPrint(
-        'Result', '     Link:\033[34m '+result[1] + result[0], 'green')
+        '\n', 'Result', '     Link:\033[34m '+result[1] + result[0], 'green')
 
 
 if __name__ == "__main__":
