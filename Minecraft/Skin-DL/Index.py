@@ -3,8 +3,8 @@ import requests
 DEBUG = True
 OutputFile = 'Skin.png'
 Name = 'Sigma76'
-shellFunctions = ['nameuuid','exit','stats','apistatus']
-toImport  =  {'base64':'','requests':'','json':'','time':'gmtime, strftime, time','PIL':'Image','re':'','datetime':'datetime'}
+shellFunctions = ['nameuuid','exit','clear','stats','apistatus']
+toImport  =  {'base64':'','requests':'','json':'','time':'gmtime, strftime, time','PIL':'Image','re':'','datetime':'datetime','os':'','sys':''}
 ########### SETUP ###########
 for i in toImport:
     defult = False if toImport[i] != '' else True
@@ -16,6 +16,8 @@ def colored(text, color):
 def DebugPrint(Catagory,Text,Color):
     if DEBUG == True:
         print(colored('['+datetime.now().strftime("%H:%M:%S")+'] ','yellow')+colored('['+Catagory+'] ','magenta')+colored(Text,Color))
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
 def APIdataGet(UUID):
     DebugPrint('Mojang API','Requesting Infomation for UUID: \033[34m' + str(UUID),'cyan')
     data = requests.get('https://sessionserver.mojang.com/session/minecraft/profile/'+UUID)
@@ -82,6 +84,8 @@ def GetApiStatus():
 def exit(user):
     DebugPrint('Shell','Exiting...','red')
     quit()
+def clear(user):
+    cls()
 def nameuuid(user):
     uuid = user[1]
     if len(uuid) <= 16:
