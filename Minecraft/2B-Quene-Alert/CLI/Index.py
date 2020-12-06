@@ -18,41 +18,46 @@ def colored(text, color):
 
 def cls(do):
     if do:
+        print(do)
         os.system('cls' if os.name == 'nt' else 'clear')
+
 ######### FUNCTIONS #########
 
 
-def configRead(configFile):
-    global logFile, text, index, doClear, delay
-    config = configparser.ConfigParser()
-    config.read(configFile)
-    logFile = config.get('Main', 'logFile')
-    text = config.get('Main', 'text')
-    index = int(config.get('Main', 'index'))
-    delay = int(config.get('Main', 'delay'))
-    doClear = bool(config.get('Main', 'doClear'))
-    autoPath()
+class config():
+    def configRead(self, configFile):
+        config = configparser.ConfigParser()
+        config.read(configFile)
+        self.logFile = config.get('Main', 'logFile')
+        self.text = config.get('Main', 'text')
+        self.index1 = int(config.get('Main', 'index1'))
+        self.index2 = int(config.get('Main', 'index2'))
+        self.delay = int(config.get('Main', 'delay'))
+        self.doClear = True if config.get(
+            'Main', 'doClear').lower() == 'true' else False
+        if self.logFile.lower() == "auto":
+            self.logFile = os.getenv('APPDATA') + \
+                "\\.minecraft\\logs\\latest.log"
 
 
-def autoPath():
-    global logFile
-    if logFile.lower() == "auto":
-        logFile = os.getenv('APPDATA')+"\\.minecraft\\logs\\latest.log"
-
-
-def Alert(Title, Text):
-    ToastNotifier().show_toast(Title, Text, icon_path="Icon.ico", duration=30)
+def printColor(data):
+    if data <= config.index1:
+        return 'green'
+    elif config.index1 < data < config.index2:
+        return 'yellow'
+    elif config.index2 < data:
+        return 'red'
 
 
 def GetData(file):
     data = open(file, 'r').read().split('\n')
-    if text in data[len(data)-2]:
-        if '§' in data[len(data)-2].split(text + ' ')[1]:
-            for i in data[len(data)-2].split(text + ' ')[1].split('§'):
+    if config.text in data[len(data)-2]:
+        if '§' in data[len(data)-2].split(config.text + ' ')[1]:
+            for i in data[len(data)-2].split(config.text + ' ')[1].split('§'):
                 if len(i) > 1:
                     return i[-(len(i)-1):]
         else:
-            return data[len(data)-2].split(text + ' ')[1]
+            return data[len(data)-2].split(config.text + ' ')[1]
     else:
         return False
 
@@ -60,19 +65,17 @@ def GetData(file):
 
 
 def main():
-    configRead(configFile)
+    config.configRead(config, configFile)
     working = ''
     while True:
-        data = GetData(logFile)
-        if int(data) < index and data != working and data != False:
-            working = data
-            cls(doClear)
-            print(colored('2B2T QUEUE: '+str(data), 'green'))
-            Alert("2B2T QUEUE", "Posion: " + str(data))
-        elif data != working and data != False:
-            cls(doClear)
-            print(colored('2B2T QUEUE: '+str(data), 'yellow'))
-        time.sleep(delay)
+        data = GetData(config.logFile)
+        if data != working and data != False:
+            cls(config.doClear)
+            print(colored('2B2T QUEUE: '+str(data), printColor(int(data))))
+            if int(data) <= config.index1:
+                ToastNotifier().show_toast("2B2T QUEUE", "Position: " +
+                                           str(data), icon_path="Icon.ico", duration=30)
+        time.sleep(config.delay)
 
 
 if __name__ == "__main__":
