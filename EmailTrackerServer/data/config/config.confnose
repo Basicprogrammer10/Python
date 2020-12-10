@@ -1,0 +1,6 @@
+hostName   = "0.0.0.0"
+serverPort = "25565"
+#Files N' Stuff™
+database   = "data/logs/data.json"
+ImgDir     = "data/images/"
+defultImg  = "data/images/image.png"
