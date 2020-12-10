@@ -1,8 +1,7 @@
 ############ VARS ############
 configFile = "config.cfg"
 
-toImport = {'win10toast': 'ToastNotifier',
-            'time': '', 'configparser': '', 'os': ''}
+toImport = {'win10toast': 'ToastNotifier', 'time': '', 'configparser': '', 'os': ''}
 ########### SETUP ###########
 for i in toImport:
     defult = False if toImport[i] != '' else True
